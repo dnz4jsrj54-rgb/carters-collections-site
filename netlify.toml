@@ -1,0 +1,76 @@
+# Netlify config for Carter's Collection
+# Static site + serverless functions for Stripe Checkout
+
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  # Use the modern Node runtime
+  node_bundler = "esbuild"
+
+# Optional: nicer URL — POST /api/create-checkout instead of /.netlify/functions/create-checkout
+[[redirects]]
+  from = "/api/create-checkout"
+  to = "/.netlify/functions/create-checkout"
+  status = 200
+  force = true
+
+# Stripe webhook endpoint
+[[redirects]]
+  from = "/api/stripe-webhook"
+  to = "/.netlify/functions/stripe-webhook"
+  status = 200
+  force = true
+
+# Retrieve Stripe session details for thank-you page (Pinterest Purchase event)
+[[redirects]]
+  from = "/api/get-session"
+  to = "/.netlify/functions/get-session"
+  status = 200
+  force = true
+
+# Canonical host: redirect netlify.app to apex domain
+[[redirects]]
+  from = "https://mellow-frangollo-645303.netlify.app/*"
+  to = "https://carterscollections.com/:splat"
+  status = 301
+  force = true
+
+# Force HTTPS + apex (www -> apex, your call — adjust if you set www as primary)
+# Netlify handles HTTPS automatically once SSL is provisioned.
+
+# SEO file headers
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type = "application/xml; charset=utf-8"
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+    Cache-Control = "public, max-age=86400"
+
+# Long-cache static assets (safe because HTML uses ?v=timestamp cache-busters)
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# HTML pages: never cache, always revalidate so users see latest deploy
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/pages/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

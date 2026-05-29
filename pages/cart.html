@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cart — Carter's Collections</title>
+  <meta name="description" content="Your bag at Carter's Collections." />
+  <meta property="og:title" content="Cart — Carter's Collections" />
+  <meta property="og:image" content="../assets/images/hero.jpg" />
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=202605291230" />
+  <!-- carters-seo-injected -->
+  <link rel="canonical" href="https://carterscollections.com/pages/cart.html" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#0F0E0C" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://carterscollections.com/pages/cart.html" />
+  <meta property="og:site_name" content="Carter's Collections" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@carterscollection" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "name": "Carter's Collections",
+  "url": "https://carterscollections.com",
+  "logo": "https://carterscollections.com/assets/images/favicon.svg",
+  "image": "https://carterscollections.com/assets/images/hero.jpg",
+  "description": "An independent boutique in Austin, Texas. Designer and niche fragrances, plus a small considered womenswear collection.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Austin",
+    "addressRegion": "TX",
+    "addressCountry": "US"
+  },
+  "sameAs": []
+}
+  </script>
+  <!-- /carters-seo-injected -->
+<!-- carters-ga4-injected -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YWY8CMZ40F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YWY8CMZ40F');
+</script>
+</head>
+<body>
+  <div id="header-slot"></div>
+
+  <main>
+    <section class="container cart-wrap">
+      <div>
+        <span class="eyebrow" style="color: var(--gold); display: block; margin-bottom: 14px;">Your Bag</span>
+        <h1 style="margin-bottom: 36px;">Cart</h1>
+        <div id="cart-container"></div>
+      </div>
+      <aside id="summary-container"></aside>
+    </section>
+  </main>
+
+  <div id="footer-slot"></div>
+
+  <script src="../assets/js/layout.js?v=202605291230"></script>
+  <script src="../assets/js/app.js?v=202605291230"></script>
+  <script>
+    function renderCartPage() {
+      const c = window.CARTER_STATE.cart;
+      const cartEl = document.getElementById('cart-container');
+      const sumEl = document.getElementById('summary-container');
+
+      if (c.length === 0) {
+        cartEl.innerHTML = `
+          <div class="empty-cart">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+              <path d="M3 6h18"/>
+              <path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+            <h2>Your bag is quiet.</h2>
+            <p>Nothing in your bag yet. Begin with a scent or a piece worth keeping.</p>
+            <div style="display:flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+              <a href="fragrances-women.html" class="btn btn-primary">Shop Fragrances</a>
+              <a href="clothing.html" class="btn btn-ghost">Shop Clothing</a>
+            </div>
+          </div>`;
+        sumEl.innerHTML = '';
+        return;
+      }
+
+      // Render items
+      cartEl.innerHTML = '<div class="cart-items">' + c.map((item, idx) => {
+        const p = CARTER_CATALOG[item.id];
+        const lineTotal = p.price * item.qty;
+        const fitClass = p.imageFit === 'contain' ? ' is-contain'
+                       : p.imageFit === 'cover-cropped' ? ' is-cropped'
+                       : '';
+        const subtitle = p.subtitle ? `<span style="display:block; font-family:var(--font-display); font-style:italic; font-size:0.85rem; color:var(--text-muted);">${p.subtitle}</span>` : '';
+        const variantText = [item.color, item.size].filter(Boolean).join(' · ');
+        return `
+          <div class="cart-item">
+            <div class="cart-item-image cart-item-media${fitClass}"><img src="../${p.image}" alt="${p.name}" loading="lazy" /></div>
+            <div class="cart-item-body">
+              <div class="cart-item-name">${p.name}${subtitle}</div>
+              <div class="cart-item-meta">${p.notes}${variantText ? ' · ' + variantText : ''}</div>
+              <div class="cart-item-actions">
+                <div class="qty-stepper">
+                  <button onclick="updateCartQty(${idx}, -1)" aria-label="Decrease">−</button>
+                  <span class="qty-value">${item.qty}</span>
+                  <button onclick="updateCartQty(${idx}, 1)" aria-label="Increase">+</button>
+                </div>
+                <button class="cart-item-remove" onclick="removeFromCart(${idx})">Remove</button>
+              </div>
+            </div>
+            <div class="cart-item-price">${fmtPrice(lineTotal)}${p.oldPrice ? ` <span style="display:block; font-size:0.75rem; color:var(--text-muted); text-decoration:line-through; font-weight:400;">${fmtPrice(p.oldPrice * item.qty)}</span>` : ''}</div>
+          </div>`;
+      }).join('') + '</div>';
+
+      const subtotal = c.reduce((s, i) => s + (CARTER_CATALOG[i.id].price * i.qty), 0);
+      const retailSubtotal = c.reduce((s, i) => s + ((CARTER_CATALOG[i.id].oldPrice || CARTER_CATALOG[i.id].price) * i.qty), 0);
+      const youSave = retailSubtotal - subtotal;
+      const shipping = 0; // Complimentary shipping on all orders
+      const total = subtotal + shipping;
+      const savingsRow = youSave > 0
+        ? `<div class="summary-row" style="color: var(--gold);"><span>You save</span><span class="num">−${fmtPrice(youSave)}</span></div>`
+        : '';
+      sumEl.innerHTML = `
+        <div class="cart-summary">
+          <h3>Order Summary</h3>
+          <div class="summary-row"><span>Subtotal</span><span class="num">${fmtPrice(subtotal)}</span></div>
+          ${savingsRow}
+          <div class="summary-row"><span>Shipping</span><span class="num" style="text-align:right; line-height:1.4;">Free to U.S. <div style="color:var(--text-muted); font-size:0.74rem; font-weight:400;">International: free over $299 or $29 flat</div></span></div>
+          <div class="summary-row"><span>Tax</span><span class="num" style="color: var(--text-muted); font-size:0.85rem;">Calculated at checkout</span></div>
+          <div class="summary-row total"><span>Total</span><span class="num">${fmtPrice(total)}</span></div>
+          <div class="promo-callout" style="margin-top:18px; padding:12px 14px; border:1px dashed var(--gold); border-radius:8px; background:rgba(196,158,88,0.06); text-align:center; font-size:0.85rem; line-height:1.5; color:var(--text);">
+            Use code <strong style="color:var(--gold); letter-spacing:0.08em;">10OFF</strong> at checkout for <strong>10% off</strong>
+            <div style="color:var(--text-muted); font-size:0.74rem; margin-top:3px;">No minimum · Valid through June 30, 2026</div>
+          </div>
+          <button class="btn btn-primary btn-block" id="checkout-btn" style="margin-top: 16px;">Proceed to Checkout</button>
+          <div class="summary-note">Secure checkout · Powered by Stripe</div>
+          <div class="summary-note" style="margin-top:10px; padding-top:12px; border-top:1px solid var(--border); font-size:0.78rem; line-height:1.55; color:var(--text-muted); text-align:left;">
+            <strong style="color:var(--text);">Shipping worldwide.</strong> Free within the United States. International orders: <strong>free over $299</strong> or <strong>$29 flat</strong>, arriving in 7–21 business days. International orders may be subject to customs duties or import taxes charged on delivery — these are set by your country and are the customer's responsibility. Questions? Email <a href="mailto:sales@carterscollections.com" style="color:var(--gold);">sales@carterscollections.com</a>.
+          </div>
+          <div id="checkout-error" style="display:none; margin-top:14px; padding:10px 12px; border:1px solid rgba(220,80,80,0.3); border-radius:6px; color:#E29090; font-size:0.85rem;"></div>
+        </div>`;
+
+      // Hook up checkout button
+      const checkoutBtn = document.getElementById('checkout-btn');
+      const errorEl = document.getElementById('checkout-error');
+      checkoutBtn.addEventListener('click', async () => {
+        if (checkoutBtn.disabled) return;
+        checkoutBtn.disabled = true;
+        const origLabel = checkoutBtn.textContent;
+        checkoutBtn.textContent = 'Redirecting to secure checkout…';
+        errorEl.style.display = 'none';
+
+        // Pinterest Tag — Checkout event (fires when user starts checkout)
+        try {
+          if (typeof pintrk === 'function') {
+            const cartTotal = c.reduce((sum, item) => {
+              const p = CARTER_CATALOG[item.id];
+              return sum + (p ? Number(p.price) * item.qty : 0);
+            }, 0);
+            const totalQty = c.reduce((s, item) => s + item.qty, 0);
+            pintrk('track', 'custom', {
+              event_name: 'initiate_checkout',
+              value: cartTotal,
+              order_quantity: totalQty,
+              currency: 'USD',
+              line_items: c.map(item => {
+                const p = CARTER_CATALOG[item.id] || {};
+                return {
+                  product_name: p.name || item.id,
+                  product_id: item.id,
+                  product_price: Number(p.price || 0),
+                  product_quantity: item.qty,
+                  product_category: p.cat || 'fragrance'
+                };
+              })
+            });
+          }
+        } catch (e) { /* never break checkout for analytics */ }
+
+        // Build a clean payload for the function
+        const baseUrl = window.location.origin + window.location.pathname.replace(/\/pages\/.*/, '');
+        const items = c.map(item => {
+          const p = CARTER_CATALOG[item.id];
+          return {
+            id: p.id,
+            cat: p.cat || '',
+            name: p.name,
+            subtitle: p.subtitle || '',
+            notes: p.notes || '',
+            price: p.price,
+            qty: item.qty,
+            size: item.size || '',
+            image: baseUrl + '/' + p.image,
+          };
+        });
+
+        try {
+          const res = await fetch('/api/create-checkout', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ items, origin: window.location.origin }),
+          });
+          const data = await res.json();
+          if (!res.ok || !data.url) {
+            throw new Error(data.error || 'Could not start checkout.');
+          }
+          window.location.href = data.url;
+        } catch (err) {
+          checkoutBtn.disabled = false;
+          checkoutBtn.textContent = origLabel;
+          errorEl.textContent = err.message;
+          errorEl.style.display = 'block';
+        }
+      });
+
+      // Show a friendly note if user came back from a canceled session
+      if (new URLSearchParams(location.search).get('canceled') === '1') {
+        showToast('Checkout canceled — your bag is still here');
+      }
+    }
+    window.renderCartPage = renderCartPage;
+    renderCartPage();
+  </script>
+</body>
+</html>

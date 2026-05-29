@@ -1,0 +1,9 @@
+{
+  "name": "carters-collection",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Carter's Collection — curated fragrance, Austin TX",
+  "dependencies": {
+    "stripe": "^17.0.0"
+  }
+}

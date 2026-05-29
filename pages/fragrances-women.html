@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Women's Fragrance — Carter's Collections</title>
+  <meta name="description" content="Curated women's fragrance — rose, orchid, saffron, amber. Twenty-three signature scents." />
+  <meta property="og:title" content="Women's Fragrance — Carter's Collections" />
+  <meta property="og:description" content="Eight signature scents — rose, orchid, saffron, amber." />
+  <meta property="og:image" content="../assets/images/collection-women.jpg" />
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=202605291230" />
+  <style>
+    /* Rose accent for women's */
+    .accent-rose .filter-chip.is-active { background: var(--rose); border-color: var(--rose); color: #0F0E0C; }
+    .accent-rose .page-header .eyebrow { color: var(--rose); }
+  </style>
+  <!-- carters-seo-injected -->
+  <link rel="canonical" href="https://carterscollections.com/pages/fragrances-women.html" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#0F0E0C" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://carterscollections.com/pages/fragrances-women.html" />
+  <meta property="og:site_name" content="Carter's Collections" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@carterscollection" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "name": "Carter's Collections",
+  "url": "https://carterscollections.com",
+  "logo": "https://carterscollections.com/assets/images/favicon.svg",
+  "image": "https://carterscollections.com/assets/images/hero.jpg",
+  "description": "An independent boutique in Austin, Texas. Designer and niche fragrances, plus a small considered womenswear collection.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Austin",
+    "addressRegion": "TX",
+    "addressCountry": "US"
+  },
+  "sameAs": []
+}
+  </script>
+  <!-- /carters-seo-injected -->
+<!-- carters-ga4-injected -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YWY8CMZ40F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YWY8CMZ40F');
+</script>
+</head>
+<body class="accent-rose">
+  <div id="header-slot"></div>
+
+  <main>
+    <section class="page-header">
+      <div class="container reveal">
+        <span class="eyebrow">No. 02 — Women's</span>
+        <h1>Fragrance for her.</h1>
+        <p class="lede">From the first bloom of jasmine to the warmth of amber and vanilla — scents that hold a room without ever raising their voice.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="filter-row reveal">
+          <button class="filter-chip">All</button>
+          <button class="filter-chip">Floral</button>
+          <button class="filter-chip">Oriental</button>
+          <button class="filter-chip">Gourmand</button>
+          <button class="filter-chip">Musk</button>
+          <button class="filter-chip">Citrus</button>
+        </div>
+        <div class="product-grid" id="grid"></div>
+      </div>
+    </section>
+
+    <section class="newsletter section-tight" style="margin-top: clamp(80px, 12vw, 140px);">
+      <div class="container reveal">
+        <span class="eyebrow">Stay In Touch</span>
+        <h2>Letters from the atelier</h2>
+        <p>A quiet quarterly note — new arrivals, the perfumer's bench, and seasonal edits.</p>
+        <form class="newsletter-form" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="newsletter" />
+          <p class="hidden" style="display:none"><label>Don’t fill this out: <input name="bot-field" /></label></p>
+          <input type="email" name="email" placeholder="Your email" aria-label="Email address" required />
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-slot"></div>
+
+  <script src="../assets/js/layout.js?v=202605291230"></script>
+  <script src="../assets/js/app.js?v=202605291230"></script>
+  <script>
+    const ids = ['w23','w1','w2','w3','w4','w5','w6','w7','w8','w9','w10','w11','w12','w13','w14','w15','w16','w17','w18','w19','w20','w21','w22'];
+    document.getElementById('grid').innerHTML = ids.map(id => productCardHTML(CARTER_CATALOG[id])).join('');
+    bindAddButtons();
+    document.querySelectorAll('#grid .reveal').forEach(el => {
+      new IntersectionObserver((entries, io) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+      }, { threshold: 0.08 }).observe(el);
+    });
+  </script>
+</body>
+</html>

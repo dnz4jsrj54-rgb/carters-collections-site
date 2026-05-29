@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Disallow utility pages that shouldn't appear in search
+Disallow: /pages/cart.html
+Disallow: /pages/checkout-success.html
+Disallow: /api/
+Disallow: /.netlify/
+
+Sitemap: https://carterscollections.com/sitemap.xml

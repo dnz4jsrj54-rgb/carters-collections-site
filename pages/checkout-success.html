@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Order Confirmed — Carter's Collections</title>
+  <meta name="description" content="Thank you for your order at Carter's Collections." />
+  <meta property="og:title" content="Order Confirmed — Carter's Collections" />
+  <meta property="og:image" content="../assets/images/hero.jpg" />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=202605291230" />
+  <!-- carters-seo-injected -->
+  <link rel="canonical" href="https://carterscollections.com/pages/checkout-success.html" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#0F0E0C" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://carterscollections.com/pages/checkout-success.html" />
+  <meta property="og:site_name" content="Carter's Collections" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@carterscollection" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "name": "Carter's Collections",
+  "url": "https://carterscollections.com",
+  "logo": "https://carterscollections.com/assets/images/favicon.svg",
+  "image": "https://carterscollections.com/assets/images/hero.jpg",
+  "description": "An independent boutique in Austin, Texas. Designer and niche fragrances, plus a small considered womenswear collection.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Austin",
+    "addressRegion": "TX",
+    "addressCountry": "US"
+  },
+  "sameAs": []
+}
+  </script>
+  <!-- /carters-seo-injected -->
+<!-- carters-ga4-injected -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YWY8CMZ40F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YWY8CMZ40F');
+</script>
+</head>
+<body>
+  <div id="header-slot"></div>
+
+  <main>
+    <section class="container" style="padding: clamp(60px, 10vw, 120px) 0; text-align: center;">
+      <div class="reveal is-visible" style="max-width: 620px; margin: 0 auto;">
+        <div style="width: 72px; height: 72px; border-radius: 50%; background: rgba(196, 158, 88, 0.12); border: 1px solid var(--gold); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 28px;">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 6 9 17l-5-5"/>
+          </svg>
+        </div>
+        <span class="eyebrow" style="color: var(--gold);">Order Confirmed</span>
+        <h1 style="margin: 14px 0 18px;">Thank you.</h1>
+        <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; max-width: 520px; margin: 0 auto 12px;">
+          A receipt is on its way to your inbox. Your order will be packed in Carter's Collections branded packaging and shipped from Austin, Texas within one to two business days.
+        </p>
+        <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; max-width: 520px; margin: 0 auto 36px;">
+          USPS Ground Advantage delivery in five to nine business days. A tracking number will follow once your bottle is in transit.
+        </p>
+
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 22px 26px; margin: 0 auto 36px; max-width: 480px; text-align: left;">
+          <div style="font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px;">Order Reference</div>
+          <div id="order-ref" style="font-family: var(--font-display); font-size: 1.15rem; word-break: break-all;">—</div>
+        </div>
+
+        <div style="display:flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+          <a href="../index.html" class="btn btn-primary">Continue Shopping</a>
+          <a href="fragrances-women.html" class="btn btn-ghost">Browse Fragrances</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-slot"></div>
+
+  <script src="../assets/js/layout.js?v=202605291230"></script>
+  <script src="../assets/js/app.js?v=202605291230"></script>
+  <script>
+    // Clear the cart on successful checkout
+    if (window.CARTER_STATE) {
+      window.CARTER_STATE.cart = [];
+      if (typeof window.saveCart === 'function') window.saveCart();
+      if (typeof updateCartCount === 'function') updateCartCount();
+    }
+
+    // Show session ID (truncated) as the order reference
+    const params = new URLSearchParams(location.search);
+    const sid = params.get('session_id');
+    if (sid) {
+      document.getElementById('order-ref').textContent = sid;
+    } else {
+      document.getElementById('order-ref').textContent = 'See your email receipt for the order ID.';
+    }
+
+    // Pinterest Tag — Purchase event (verified server-side via /api/get-session)
+    // Fetches the real order total and hashed customer email from Stripe so the event
+    // includes (a) accurate value for ROAS tracking, (b) enhanced match for higher attribution.
+    (async function firePurchase() {
+      if (!sid || !sid.startsWith('cs_')) return;
+      const firedKey = 'pintrk_purchase_' + sid;
+      if (sessionStorage.getItem(firedKey)) return; // already fired this session
+
+      try {
+        const res = await fetch('/api/get-session?session_id=' + encodeURIComponent(sid));
+        if (!res.ok) return;
+        const data = await res.json();
+        if (!data || !data.ok || !data.amount_total) return;
+
+        if (typeof pintrk === 'function') {
+          // Re-attach enhanced match (hashed email) for this user.
+          if (data.email_sha256) {
+            pintrk('load', '2613927087053', { em: data.email_sha256 });
+          }
+          pintrk('track', 'checkout', {
+            event_id: data.order_id,
+            value: data.amount_total,
+            order_quantity: data.item_count || 1,
+            order_id: data.order_id,
+            currency: data.currency || 'USD'
+          });
+          sessionStorage.setItem(firedKey, '1');
+        }
+      } catch (e) { /* analytics must never break the page */ }
+    })();
+  </script>
+</body>
+</html>
