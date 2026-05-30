@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bags & Leather Goods — Carter's Collections</title>
-  <meta name="description" content="Authentic designer handbags, men's bags, and leather wallets — Michael Kors, Marc Jacobs, Burberry, and Montblanc, priced below retail. Free U.S. shipping from Austin, TX." />
-  <meta property="og:title" content="Bags & Leather Goods — Carter's Collections" />
-  <meta property="og:description" content="Authentic designer bags and wallets, priced below retail — Michael Kors, Marc Jacobs, Burberry, Montblanc." />
-  <meta property="og:image" content="../assets/real-products/b7_1.jpg" />
+  <title>Sale — Carter's Collections</title>
+  <meta name="description" content="Authentic designer pieces at our deepest discounts — fragrances, bags, and leather goods, all verified below retail. Updated automatically. Free U.S. shipping from Austin, TX." />
+  <meta property="og:title" content="Sale — Carter's Collections" />
+  <meta property="og:description" content="Authentic designer pieces at our deepest below-retail discounts. Updated daily." />
+  <meta property="og:image" content="../assets/real-products/b22_1.jpg" />
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,13 +22,14 @@
     .clothing-section-head h2 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(28px, 3.4vw, 40px); margin: 0; letter-spacing: -0.01em; }
     .clothing-section-head .count { font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.55; }
     .clothing-empty { padding: 64px 0; text-align: center; opacity: 0.7; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; }
+    .sale-updated { font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.5; margin-top: 14px; }
   </style>
   <!-- carters-seo-injected -->
-  <link rel="canonical" href="https://carterscollections.com/pages/bags.html" />
+  <link rel="canonical" href="https://carterscollections.com/pages/sale.html" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="theme-color" content="#0F0E0C" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://carterscollections.com/pages/bags.html" />
+  <meta property="og:url" content="https://carterscollections.com/pages/sale.html" />
   <meta property="og:site_name" content="Carter's Collections" />
   <meta property="og:locale" content="en_US" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -37,9 +38,9 @@
 {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "Bags & Leather Goods — Carter's Collections",
-  "url": "https://carterscollections.com/pages/bags.html",
-  "description": "Authentic designer handbags, men's bags, and leather wallets, priced below retail.",
+  "name": "Sale — Carter's Collections",
+  "url": "https://carterscollections.com/pages/sale.html",
+  "description": "Authentic designer pieces at our deepest below-retail discounts.",
   "isPartOf": {
     "@type": "WebSite",
     "name": "Carter's Collections",
@@ -64,9 +65,10 @@
   <main>
     <section class="page-header">
       <div class="container reveal">
-        <span class="eyebrow">No. 04 — Bags & Leather</span>
-        <h1>Carried with intention.</h1>
-        <p class="lede">A tight edit of authentic designer bags and leather goods — Michael Kors, Marc Jacobs, Burberry, and Montblanc. Every piece is sourced genuine and priced below retail. Free U.S. shipping, hand-packed in Austin.</p>
+        <span class="eyebrow">No. 05 — The Sale Edit</span>
+        <h1>Deepest cuts.</h1>
+        <p class="lede">Our biggest below-retail finds, refreshed automatically as new deals surface. Every piece is authentic and verified below its original retail price. Free U.S. shipping, hand-packed in Austin.</p>
+        <p class="sale-updated" id="sale-updated"></p>
       </div>
     </section>
 
@@ -74,9 +76,9 @@
       <div class="container">
         <div class="filter-row reveal" id="filter-row">
           <button class="filter-chip is-active" data-filter="all">All</button>
-          <button class="filter-chip" data-filter="Women&rsquo;s Handbags">Women's Handbags</button>
-          <button class="filter-chip" data-filter="Men&rsquo;s Bags">Men's Bags</button>
-          <button class="filter-chip" data-filter="Wallets &amp; Small Leather Goods">Wallets & SLG</button>
+          <button class="filter-chip" data-filter="fragrance">Fragrance</button>
+          <button class="filter-chip" data-filter="clothing">Clothing</button>
+          <button class="filter-chip" data-filter="bag">Bags & Leather</button>
         </div>
         <div id="sections"></div>
       </div>
@@ -85,8 +87,8 @@
     <section class="newsletter section-tight" style="margin-top: clamp(80px, 12vw, 140px);">
       <div class="container reveal">
         <span class="eyebrow">Stay In Touch</span>
-        <h2>Letters from the atelier</h2>
-        <p>A quiet quarterly note — new arrivals, restocks, and seasonal edits.</p>
+        <h2>First in line for the next drop</h2>
+        <p>A quiet quarterly note — new arrivals, restocks, and the deepest sale finds.</p>
         <form class="newsletter-form" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
           <input type="hidden" name="form-name" value="newsletter" />
           <p class="hidden" style="display:none"><label>Don’t fill this out: <input name="bot-field" /></label></p>
@@ -102,36 +104,53 @@
   <script src="../assets/js/layout.js?v=202605311230"></script>
   <script src="../assets/js/app.js?v=202605311230"></script>
   <script>
-    // Pull every bag from the catalog (cat==='bag'). Scales automatically as new bags are added.
-    const SECTION_ORDER = ['Women\u2019s Handbags', 'Men\u2019s Bags', 'Wallets & Small Leather Goods'];
-    const all = Object.values(CARTER_CATALOG).filter(p => p && p.cat === 'bag');
+    // Sale page: pull every catalog item flagged onSale === true, sorted by discount depth.
+    // The automated watcher sets onSale:true (and saleAddedAt) on qualifying Jomashop finds.
+    const CAT_LABEL = { fragrance: 'Fragrances', clothing: 'Clothing', bag: 'Bags & Leather Goods' };
+    const CAT_ORDER = ['fragrance', 'clothing', 'bag'];
 
-    function bySection(items) {
+    function discountPct(p) {
+      if (!p.oldPrice || !p.price) return 0;
+      return Math.round((1 - p.price / p.oldPrice) * 100);
+    }
+
+    const all = Object.values(CARTER_CATALOG)
+      .filter(p => p && p.onSale === true)
+      .sort((a, b) => discountPct(b) - discountPct(a));
+
+    // "Updated" line — newest saleAddedAt, if present
+    (function () {
+      const stamps = all.map(p => p.saleAddedAt).filter(Boolean).sort();
+      const el = document.getElementById('sale-updated');
+      if (stamps.length) {
+        const d = new Date(stamps[stamps.length - 1]);
+        if (!isNaN(d)) el.textContent = 'Last updated ' + d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+      }
+    })();
+
+    function byCat(items) {
       const map = {};
-      items.forEach(p => {
-        const s = p.section || 'Other';
-        (map[s] = map[s] || []).push(p);
-      });
+      items.forEach(p => { const c = p.cat || 'other'; (map[c] = map[c] || []).push(p); });
       return map;
     }
 
     function render(filter) {
-      const filtered = filter === 'all' ? all : all.filter(p => (p.section || 'Other') === filter);
-      const grouped = bySection(filtered);
-      const sections = (filter === 'all' ? SECTION_ORDER : [filter]).filter(s => grouped[s] && grouped[s].length);
+      const filtered = filter === 'all' ? all : all.filter(p => (p.cat || 'other') === filter);
+      const grouped = byCat(filtered);
+      const cats = (filter === 'all' ? CAT_ORDER : [filter]).filter(c => grouped[c] && grouped[c].length);
       const root = document.getElementById('sections');
-      if (!sections.length) {
-        root.innerHTML = '<div class="clothing-empty">More pieces arriving soon.</div>';
+      if (!cats.length) {
+        root.innerHTML = '<div class="clothing-empty">Fresh markdowns landing soon — check back shortly.</div>';
         return;
       }
-      root.innerHTML = sections.map(s => `
+      root.innerHTML = cats.map(c => `
         <div class="clothing-section">
           <div class="clothing-section-head reveal">
-            <h2>${s}</h2>
-            <span class="count">${grouped[s].length} ${grouped[s].length === 1 ? 'piece' : 'pieces'}</span>
+            <h2>${CAT_LABEL[c] || c}</h2>
+            <span class="count">${grouped[c].length} ${grouped[c].length === 1 ? 'piece' : 'pieces'}</span>
           </div>
           <div class="product-grid">
-            ${grouped[s].map(p => productCardHTML(p)).join('')}
+            ${grouped[c].map(p => productCardHTML(p)).join('')}
           </div>
         </div>
       `).join('');
