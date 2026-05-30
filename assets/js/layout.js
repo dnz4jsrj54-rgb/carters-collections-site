@@ -64,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <a href="${P('fragrances-men.html')}">Men's Fragrance</a>
           <a href="${P('fragrances-women.html')}">Women's Fragrance</a>
           <a href="${P('clothing.html')}">Clothing</a>
+          <a href="${P('bags.html')}">Bags</a>
           <a href="${P('about.html')}">About</a>
         </nav>
         <div class="header-actions">
@@ -108,6 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <li><a href="${P('fragrances-men.html')}" data-close>Men's Fragrance</a></li>
         <li><a href="${P('fragrances-women.html')}" data-close>Women's Fragrance</a></li>
         <li><a href="${P('clothing.html')}" data-close>Clothing</a></li>
+        <li><a href="${P('bags.html')}" data-close>Bags</a></li>
         <li><a href="${P('about.html')}" data-close>About</a></li>
         <li><a href="${P('cart.html')}" data-close>Cart</a></li>
       </ul>
@@ -130,6 +132,7 @@ document.addEventListener('DOMContentLoaded', function () {
               <li><a href="${P('fragrances-men.html')}">Men's Fragrance</a></li>
               <li><a href="${P('fragrances-women.html')}">Women's Fragrance</a></li>
               <li><a href="${P('clothing.html')}">Clothing</a></li>
+              <li><a href="${P('bags.html')}">Bags</a></li>
               <li><a href="${P('cart.html')}">Cart</a></li>
             </ul>
           </div>
