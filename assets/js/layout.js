@@ -198,3 +198,91 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   } catch(e) {}
 })();
+
+/* ============================================================
+   Exit-Intent Offer Popup — site-wide.
+   Shows once per visitor (localStorage). Captures email into the
+   Netlify "newsletter" form (feeds welcome-email automation) and
+   surfaces the 10OFF code. Desktop: mouse leaves top of viewport.
+   Mobile: fast scroll-up after engagement.
+   ============================================================ */
+(function () {
+  try {
+    var SEEN_KEY = 'cc_exit_offer_seen_v1';
+    if (localStorage.getItem(SEEN_KEY)) return;
+
+    var shown = false;
+
+    function buildPopup() {
+      var wrap = document.createElement('div');
+      wrap.id = 'cc-exit-overlay';
+      wrap.setAttribute('role', 'dialog');
+      wrap.setAttribute('aria-modal', 'true');
+      wrap.setAttribute('aria-label', 'Special offer');
+      wrap.style.cssText = 'position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(10,10,12,0.62);backdrop-filter:blur(3px);opacity:0;transition:opacity .25s ease;';
+      wrap.innerHTML = ''
+        + '<div id="cc-exit-card" style="position:relative;width:100%;max-width:420px;background:var(--bg,#fffdf9);color:var(--text,#1a1a1a);border:1px solid var(--gold,#c49e58);border-radius:14px;padding:34px 30px 30px;box-shadow:0 24px 70px rgba(0,0,0,0.45);transform:translateY(14px) scale(.98);transition:transform .28s ease;font-family:var(--font-body,Georgia,serif);text-align:center;">'
+        +   '<button id="cc-exit-close" aria-label="Close" style="position:absolute;top:12px;right:14px;background:none;border:none;font-size:1.5rem;line-height:1;color:var(--text-muted,#8a8a8a);cursor:pointer;">&times;</button>'
+        +   '<div style="font-family:var(--font-display,Georgia,serif);font-style:italic;font-size:0.82rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold,#c49e58);margin-bottom:10px;">Before you go</div>'
+        +   '<h2 style="font-family:var(--font-display,Georgia,serif);font-size:1.7rem;line-height:1.2;margin:0 0 10px;">Take 10% off your first order</h2>'
+        +   '<p style="font-size:0.92rem;line-height:1.6;color:var(--text-muted,#6a6a6a);margin:0 0 20px;">Designer scents &amp; dresses worth keeping. Drop your email for the code &amp; first dibs on restocks.</p>'
+        +   '<form id="cc-exit-form" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="display:flex;flex-direction:column;gap:10px;">'
+        +     '<input type="hidden" name="form-name" value="newsletter" />'
+        +     '<p style="display:none;"><label>Don\u2019t fill this out: <input name="bot-field" /></label></p>'
+        +     '<input type="email" name="email" required placeholder="you@email.com" style="padding:13px 14px;border:1px solid var(--border,#d8d2c4);border-radius:8px;font-size:0.95rem;font-family:inherit;background:var(--bg,#fff);color:var(--text,#1a1a1a);" />'
+        +     '<button type="submit" style="padding:13px 14px;border:none;border-radius:8px;background:var(--gold,#c49e58);color:#1a1208;font-weight:600;font-size:0.95rem;letter-spacing:0.03em;cursor:pointer;font-family:inherit;">Send me the code</button>'
+        +   '</form>'
+        +   '<div id="cc-exit-success" style="display:none;padding:6px 0 2px;">'
+        +     '<p style="font-size:0.95rem;line-height:1.6;margin:0 0 6px;">You\u2019re in. Use this at checkout:</p>'
+        +     '<div style="display:inline-block;border:1px dashed var(--gold,#c49e58);border-radius:8px;padding:10px 18px;font-size:1.25rem;font-weight:700;letter-spacing:0.12em;color:var(--gold,#c49e58);">10OFF</div>'
+        +     '<p style="font-size:0.78rem;color:var(--text-muted,#8a8a8a);margin:12px 0 0;">10% off + free U.S. shipping \u00b7 ends June 30, 2026</p>'
+        +   '</div>'
+        +   '<button id="cc-exit-decline" style="display:block;margin:16px auto 0;background:none;border:none;font-size:0.78rem;color:var(--text-muted,#9a9a9a);text-decoration:underline;cursor:pointer;font-family:inherit;">No thanks, I\u2019ll pay full price</button>'
+        + '</div>';
+      return wrap;
+    }
+
+    function closePopup(overlay) {
+      localStorage.setItem(SEEN_KEY, '1');
+      overlay.style.opacity = '0';
+      setTimeout(function(){ if (overlay.parentNode) overlay.parentNode.removeChild(overlay); }, 260);
+    }
+
+    function showPopup() {
+      if (shown || localStorage.getItem(SEEN_KEY)) return;
+      shown = true;
+      var overlay = buildPopup();
+      document.body.appendChild(overlay);
+      requestAnimationFrame(function(){
+        overlay.style.opacity = '1';
+        var card = document.getElementById('cc-exit-card');
+        if (card) card.style.transform = 'translateY(0) scale(1)';
+      });
+
+      overlay.addEventListener('click', function(e){ if (e.target === overlay) closePopup(overlay); });
+      document.getElementById('cc-exit-close').addEventListener('click', function(){ closePopup(overlay); });
+      document.getElementById('cc-exit-decline').addEventListener('click', function(){ closePopup(overlay); });
+
+      var form = document.getElementById('cc-exit-form');
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        var data = new URLSearchParams(new FormData(form)).toString();
+        fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: data })
+          .catch(function(){ /* still reveal code even if submit hiccups */ })
+          .finally(function(){
+            localStorage.setItem(SEEN_KEY, '1');
+            form.style.display = 'none';
+            document.getElementById('cc-exit-success').style.display = 'block';
+          });
+      });
+    }
+
+    // Desktop: mouse leaves through top of the viewport.
+    document.addEventListener('mouseout', function (e) {
+      if (!e.relatedTarget && e.clientY <= 4) showPopup();
+    });
+
+    // Mobile / fallback: show after 35s of engagement on the page.
+    setTimeout(showPopup, 35000);
+  } catch (e) {}
+})();

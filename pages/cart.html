@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/css/style.css?v=202605291230" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=202605300100" />
   <!-- carters-seo-injected -->
   <link rel="canonical" href="https://carterscollections.com/pages/cart.html" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -60,6 +60,7 @@
         <span class="eyebrow" style="color: var(--gold); display: block; margin-bottom: 14px;">Your Bag</span>
         <h1 style="margin-bottom: 36px;">Cart</h1>
         <div id="cart-container"></div>
+        <div id="bundle-slot"></div>
       </div>
       <aside id="summary-container"></aside>
     </section>
@@ -67,8 +68,8 @@
 
   <div id="footer-slot"></div>
 
-  <script src="../assets/js/layout.js?v=202605291230"></script>
-  <script src="../assets/js/app.js?v=202605291230"></script>
+  <script src="../assets/js/layout.js?v=202605300100"></script>
+  <script src="../assets/js/app.js?v=202605300100"></script>
   <script>
     function renderCartPage() {
       const c = window.CARTER_STATE.cart;
@@ -91,6 +92,8 @@
             </div>
           </div>`;
         sumEl.innerHTML = '';
+        const bs = document.getElementById('bundle-slot');
+        if (bs) bs.innerHTML = '';
         return;
       }
 
@@ -130,9 +133,23 @@
       const savingsRow = youSave > 0
         ? `<div class="summary-row" style="color: var(--gold);"><span>You save</span><span class="num">−${fmtPrice(youSave)}</span></div>`
         : '';
+
+      // Free-international-shipping progress bar ($299 threshold)
+      const FREE_INTL_THRESHOLD = 299;
+      const remaining = Math.max(0, FREE_INTL_THRESHOLD - subtotal);
+      const pct = Math.min(100, Math.round((subtotal / FREE_INTL_THRESHOLD) * 100));
+      const shipProgress = remaining > 0
+        ? `<div class="ship-progress" style="margin:4px 0 16px; padding:12px 14px; border:1px solid var(--border); border-radius:8px; background:rgba(196,158,88,0.04);">
+             <div style="font-size:0.82rem; line-height:1.5; color:var(--text); margin-bottom:8px;">Add <strong style="color:var(--gold);">${fmtPrice(remaining)}</strong> more to unlock <strong>FREE international shipping</strong> 🌍</div>
+             <div style="height:7px; border-radius:99px; background:var(--border); overflow:hidden;"><div style="height:100%; width:${pct}%; border-radius:99px; background:linear-gradient(90deg,var(--gold),#e0c074); transition:width .4s ease;"></div></div>
+           </div>`
+        : `<div class="ship-progress" style="margin:4px 0 16px; padding:12px 14px; border:1px solid var(--gold); border-radius:8px; background:rgba(196,158,88,0.08); text-align:center;">
+             <div style="font-size:0.85rem; line-height:1.5; color:var(--text);">🎉 You've unlocked <strong style="color:var(--gold);">FREE worldwide shipping</strong></div>
+           </div>`;
       sumEl.innerHTML = `
         <div class="cart-summary">
           <h3>Order Summary</h3>
+          ${shipProgress}
           <div class="summary-row"><span>Subtotal</span><span class="num">${fmtPrice(subtotal)}</span></div>
           ${savingsRow}
           <div class="summary-row"><span>Shipping</span><span class="num" style="text-align:right; line-height:1.4;">Free to U.S. <div style="color:var(--text-muted); font-size:0.74rem; font-weight:400;">International: free over $299 or $29 flat</div></span></div>
@@ -149,6 +166,9 @@
           </div>
           <div id="checkout-error" style="display:none; margin-top:14px; padding:10px 12px; border:1px solid rgba(220,80,80,0.3); border-radius:6px; color:#E29090; font-size:0.85rem;"></div>
         </div>`;
+
+      // "Complete the look" bundle suggestion — cross-sell at peak intent.
+      try { renderBundleSuggestion(c, subtotal); } catch (e) {}
 
       // Hook up checkout button
       const checkoutBtn = document.getElementById('checkout-btn');
@@ -228,6 +248,50 @@
         showToast('Checkout canceled — your bag is still here');
       }
     }
+    // ---- "Complete the look" cross-sell --------------------------------
+    function renderBundleSuggestion(cart, subtotal) {
+      const host = document.getElementById('bundle-slot');
+      if (!host) return;
+      const inCart = new Set(cart.map(i => i.id));
+      const cats = new Set(cart.map(i => (CARTER_CATALOG[i.id] || {}).cat));
+      const hasClothing = cats.has('clothing');
+      const hasFragrance = cats.has('fragrance');
+
+      // Curated pairings: if they have a dress, suggest a viral scent; if they
+      // have fragrance(s), suggest a $22.99 dress. Pick first not already in cart.
+      const fragPicks = ['w15','w5','m17','m8','w1','m5'];   // viral / value scents
+      const dressPicks = ['c1','c3','c4','c2'];               // $22.99 dresses
+      let pool = [];
+      if (hasClothing && !hasFragrance) pool = fragPicks;
+      else if (hasFragrance && !hasClothing) pool = dressPicks;
+      else pool = ['c1','w15','m17','w5'];                    // mixed/either -> bestsellers
+
+      const pickId = pool.find(id => !inCart.has(id) && CARTER_CATALOG[id]);
+      if (!pickId) { host.innerHTML = ''; return; }
+      const p = CARTER_CATALOG[pickId];
+      const fitClass = p.imageFit === 'contain' ? ' is-contain'
+                     : p.imageFit === 'cover-cropped' ? ' is-cropped' : '';
+      const heading = (hasClothing && !hasFragrance)
+        ? 'Complete the look'
+        : (hasFragrance && !hasClothing) ? 'Pairs perfectly' : 'You might also love';
+      const sub = p.subtitle ? ` <span style="font-style:italic;color:var(--text-muted);font-family:var(--font-display);">${p.subtitle}</span>` : '';
+      host.innerHTML = `
+        <div style="margin-top:22px;padding:16px;border:1px solid var(--border);border-radius:10px;background:var(--bg-soft,rgba(196,158,88,0.03));">
+          <div style="font-family:var(--font-display);font-style:italic;font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">${heading}</div>
+          <div style="display:flex;gap:14px;align-items:center;">
+            <div class="cart-item-media${fitClass}" style="flex:0 0 70px;width:70px;height:88px;border-radius:7px;overflow:hidden;background:var(--bg);"><img src="../${p.image}" alt="${p.name}" loading="lazy" style="width:100%;height:100%;object-fit:${p.imageFit==='contain'?'contain':'cover'};" /></div>
+            <div style="flex:1;min-width:0;">
+              <div style="font-size:0.95rem;line-height:1.3;">${p.name}${sub}</div>
+              <div style="font-size:0.82rem;color:var(--text-muted);margin:3px 0 0;">${p.notes || ''}</div>
+              <div style="margin-top:5px;font-size:0.95rem;"><strong>${fmtPrice(p.price)}</strong>${p.oldPrice?` <span style="color:var(--text-muted);text-decoration:line-through;font-size:0.82rem;">${fmtPrice(p.oldPrice)}</span>`:''}</div>
+            </div>
+            <button id="bundle-add" class="btn btn-ghost" style="flex:0 0 auto;padding:9px 16px;font-size:0.85rem;white-space:nowrap;">Add</button>
+          </div>
+        </div>`;
+      const btn = document.getElementById('bundle-add');
+      if (btn) btn.addEventListener('click', () => { addToCart(pickId, 1); renderCartPage(); });
+    }
+
     window.renderCartPage = renderCartPage;
     renderCartPage();
   </script>
