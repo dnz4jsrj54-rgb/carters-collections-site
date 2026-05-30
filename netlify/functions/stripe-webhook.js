@@ -14,7 +14,7 @@ exports.handler = async (event) => {
   const twilioSid = process.env.TWILIO_ACCOUNT_SID;
   const twilioToken = process.env.TWILIO_AUTH_TOKEN;
   const twilioFrom = process.env.TWILIO_FROM_NUMBER; // e.g. +18885551234
-  const ownerPhone = process.env.OWNER_PHONE_NUMBER; // +15125905489
+  const ownerPhone = process.env.OWNER_PHONE_NUMBER; // E.164, e.g. +1XXXXXXXXXX
 
   if (!stripeSecret || !webhookSecret) {
     console.error("Missing Stripe env vars");
