@@ -56,16 +56,8 @@ document.addEventListener('DOMContentLoaded', function () {
           ${logoCompact}
         </a>
         <nav class="nav-primary" aria-label="Primary">
-          <div class="nav-dropdown">
-            <button type="button" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-              Fragrance
-              <svg class="nav-caret" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-            </button>
-            <div class="nav-dropdown-menu" role="menu">
-              <a href="${P('fragrances-men.html')}" role="menuitem">Men's Fragrance</a>
-              <a href="${P('fragrances-women.html')}" role="menuitem">Women's Fragrance</a>
-            </div>
-          </div>
+          <a href="${P('fragrances-men.html')}">Men's Fragrance</a>
+          <a href="${P('fragrances-women.html')}">Women's Fragrance</a>
           <a href="${P('clothing.html')}">Clothing</a>
           <a href="${P('bags.html')}">Bags</a>
           <a href="${P('sunglasses.html')}">Sunglasses</a>
@@ -111,13 +103,8 @@ document.addEventListener('DOMContentLoaded', function () {
         </button>
       </div>
       <ul>
-        <li class="mobile-nav-group">
-          <span class="mobile-nav-label">Fragrance</span>
-          <ul class="mobile-nav-sub">
-            <li><a href="${P('fragrances-men.html')}" data-close>Men's Fragrance</a></li>
-            <li><a href="${P('fragrances-women.html')}" data-close>Women's Fragrance</a></li>
-          </ul>
-        </li>
+        <li><a href="${P('fragrances-men.html')}" data-close>Men's Fragrance</a></li>
+        <li><a href="${P('fragrances-women.html')}" data-close>Women's Fragrance</a></li>
         <li><a href="${P('clothing.html')}" data-close>Clothing</a></li>
         <li><a href="${P('bags.html')}" data-close>Bags</a></li>
         <li><a href="${P('sunglasses.html')}" data-close>Sunglasses</a></li>
