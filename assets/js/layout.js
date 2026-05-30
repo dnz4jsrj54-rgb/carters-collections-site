@@ -50,11 +50,6 @@ document.addEventListener('DOMContentLoaded', function () {
   `;
 
   const header = `
-    <div class="announcement-bar" role="region" aria-label="Site announcement">
-      <div class="container" style="text-align:center; padding:8px 16px; font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:#0F0E0C; background:linear-gradient(90deg,#C49E58,#E0C079,#C49E58); font-weight:600;">
-        <span class="announce-msg" data-announce style="transition:opacity 220ms ease;">Free U.S. Shipping On Every Order &nbsp;·&nbsp; Hand-Packed In Austin</span>
-      </div>
-    </div>
     <header class="site-header">
       <div class="container header-inner">
         <a href="${P('index.html')}" class="logo logo--wordmark" aria-label="Carter's Collections home">
@@ -183,23 +178,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const footerSlot = document.getElementById('footer-slot');
   if (footerSlot) footerSlot.outerHTML = footer;
 
-  // Announcement bar rotator (Free Shipping <-> 10OFF promo)
-  try {
-    var announceEl = document.querySelector('[data-announce]');
-    if (announceEl) {
-      var msgs = [
-        'Free U.S. Shipping \u00A0\u00B7\u00A0 International Free Over $299 (or $29 Flat)',
-        'Use Code 10OFF For 10% Off \u00A0\u00B7\u00A0 Ends June 30',
-        'Hand-Packed In Austin \u00A0\u00B7\u00A0 Now Shipping Worldwide'
-      ];
-      var i = 0;
-      setInterval(function(){
-        i = (i + 1) % msgs.length;
-        announceEl.style.opacity = '0';
-        setTimeout(function(){ announceEl.textContent = msgs[i]; announceEl.style.opacity = '1'; }, 220);
-      }, 4500);
-    }
-  } catch(e) {}
 })();
 
 /* ============================================================
