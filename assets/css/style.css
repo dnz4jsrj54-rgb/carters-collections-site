@@ -1454,3 +1454,6 @@ p { color: var(--text); }
   .cc-annc-inner { gap: 8px; font-size: 0.7rem; padding: 0 10px; }
   .cc-annc-cta { display: none; }
 }
+
+/* Hero subline discount highlight */
+.hero-sub strong { color: var(--gold); font-weight: 600; letter-spacing: 0.01em; }
