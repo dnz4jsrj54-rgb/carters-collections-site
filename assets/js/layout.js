@@ -50,6 +50,13 @@ document.addEventListener('DOMContentLoaded', function () {
   `;
 
   const header = `
+    <a href="${P('sale.html')}" class="cc-annc-bar" aria-label="Shop the sale with code 10OFF">
+      <span class="cc-annc-inner">
+        <span class="cc-annc-spark" aria-hidden="true">✦</span>
+        <span class="cc-annc-text"><strong>10% OFF</strong> your first order · code <strong>10OFF</strong> · free U.S. shipping</span>
+        <span class="cc-annc-cta">Shop the Sale →</span>
+      </span>
+    </a>
     <header class="site-header">
       <div class="container header-inner">
         <a href="${P('index.html')}" class="logo logo--wordmark" aria-label="Carter's Collections home">
@@ -269,7 +276,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!e.relatedTarget && e.clientY <= 4) showPopup();
     });
 
-    // Mobile / fallback: show after 35s of engagement on the page.
-    setTimeout(showPopup, 35000);
+    // Mobile / fallback: show after 12s of engagement on the page.
+    setTimeout(showPopup, 12000);
   } catch (e) {}
 })();
