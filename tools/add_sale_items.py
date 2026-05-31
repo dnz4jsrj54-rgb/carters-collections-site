@@ -60,8 +60,21 @@ def load_template():
         src = open(cand, encoding="utf-8").read()
         m = re.search(r'TEMPLATE = """(.*?)"""', src, re.DOTALL)
         if m:
-            return ("file", m.group(1))
+            return ("file", decode_display_escapes(m.group(1)))
     return ("min", None)
+
+
+def decode_display_escapes(text):
+    # The template is read as raw text, so literal \uXXXX sequences meant as
+    # display glyphs (e.g. \u2212 minus, \u2661 heart, \u00b7 dot) would render
+    # as literal text. Convert SINGLE-backslash escapes to real characters.
+    # A double-backslash (\\uXXXX) is intentional JSON-LD escaping -> leave it.
+    def sub(m):
+        try:
+            return chr(int(m.group(1), 16))
+        except Exception:
+            return m.group(0)
+    return re.sub(r'(?<!\\)\\u([0-9a-fA-F]{4})', sub, text)
 
 
 def build_detail_page(item, ver):
