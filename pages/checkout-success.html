@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/css/style.css?v=202605302209" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=202605310101" />
   <!-- carters-seo-injected -->
   <link rel="canonical" href="https://carterscollections.com/pages/checkout-success.html" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -87,8 +87,8 @@
 
   <div id="footer-slot"></div>
 
-  <script src="../assets/js/layout.js?v=202605302209"></script>
-  <script src="../assets/js/app.js?v=202605302209"></script>
+  <script src="../assets/js/layout.js?v=202605310101"></script>
+  <script src="../assets/js/app.js?v=202605310101"></script>
   <script>
     // Clear the cart on successful checkout
     if (window.CARTER_STATE) {
@@ -133,6 +133,25 @@
             currency: data.currency || 'USD'
           });
           sessionStorage.setItem(firedKey, '1');
+        }
+
+        // GA4 — purchase event (verified server-side via Stripe)
+        const ga4Key = 'ga4_purchase_' + sid;
+        if (typeof gtag === 'function' && !sessionStorage.getItem(ga4Key)) {
+          gtag('event', 'purchase', {
+            transaction_id: data.order_id,
+            value: data.amount_total,
+            currency: data.currency || 'USD',
+            items: Array.isArray(data.items) && data.items.length
+              ? data.items.map(it => ({
+                  item_id: it.id || it.item_id || '',
+                  item_name: it.name || it.item_name || '',
+                  price: Number(it.price || 0),
+                  quantity: Number(it.qty || it.quantity || 1)
+                }))
+              : [{ item_id: data.order_id, item_name: 'Order', price: data.amount_total, quantity: data.item_count || 1 }]
+          });
+          sessionStorage.setItem(ga4Key, '1');
         }
       } catch (e) { /* analytics must never break the page */ }
     })();
