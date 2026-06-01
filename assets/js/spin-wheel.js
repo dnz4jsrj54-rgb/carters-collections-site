@@ -81,6 +81,7 @@
         // Email gate
         '<form id="cc-spin-form" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="display:flex;flex-direction:column;gap:10px;">' +
           '<input type="hidden" name="form-name" value="newsletter" />' +
+          '<input type="hidden" name="source" value="spin-wheel" />' +
           '<p style="display:none;"><label>Don\u2019t fill this out: <input name="bot-field" /></label></p>' +
           '<input id="cc-spin-email" type="email" name="email" required placeholder="you@email.com" style="padding:13px 14px;border:1px solid var(--border,#2E2A24);border-radius:9px;font-size:0.95rem;font-family:inherit;background:rgba(255,255,255,0.03);color:var(--text,#EDE6D8);text-align:center;" />' +
           '<button id="cc-spin-go" type="submit" style="padding:14px;border:none;border-radius:9px;background:var(--gold,#C9A961);color:#15120A;font-weight:600;font-size:1rem;letter-spacing:0.04em;cursor:pointer;font-family:inherit;">SPIN THE WHEEL</button>' +

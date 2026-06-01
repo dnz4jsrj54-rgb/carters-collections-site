@@ -14,10 +14,18 @@ exports.handler = async (event) => {
     const payload = JSON.parse(event.body).payload;
     const formName = payload.form_name;
     const email = payload.data && payload.data.email;
+    const source = payload.data && payload.data.source;
 
     // Only react to the newsletter form
     if (formName !== "newsletter" || !email) {
       return { statusCode: 200, body: "Ignored (not a newsletter signup)" };
+    }
+
+    // Spin-the-wheel signups get THEIR unique winning code emailed by the
+    // spin-reward function. Skip the generic 10OFF welcome so they aren't
+    // double-emailed with a worse code.
+    if (source === "spin-wheel") {
+      return { statusCode: 200, body: "Skipped (spin-wheel handles its own email)" };
     }
 
     const RESEND_API_KEY = process.env.RESEND_API_KEY;
