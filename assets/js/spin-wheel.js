@@ -23,22 +23,23 @@
     // Wedge layout, clockwise from the top (pointer). Each maps to a prize key
     // the backend understands. Weighting handled separately so the *visual*
     // wheel can show 20% while still being rare.
+    // Three prizes only: 15%, $15, 20%. Eight wedges keep the wheel full and
+    // fun: four 15% wedges, two $15 wedges, two 20% wedges. Colors alternate.
     var WEDGES = [
-      { label: "10% OFF", prize: "p10", color: "#1A1814" },
       { label: "15% OFF", prize: "p15", color: "#C9A961" },
+      { label: "$15 OFF", prize: "d15", color: "#1A1814" },
+      { label: "15% OFF", prize: "p15", color: "#241F18" },
+      { label: "20% OFF", prize: "p20", color: "#C9A961" },
+      { label: "15% OFF", prize: "p15", color: "#1A1814" },
       { label: "$15 OFF", prize: "d15", color: "#241F18" },
-      { label: "10% OFF", prize: "p10", color: "#C9A961" },
-      { label: "20% OFF", prize: "p20", color: "#1A1814" },
-      { label: "10% OFF", prize: "p10", color: "#C9A961" },
-      { label: "$15 OFF", prize: "d15", color: "#241F18" },
-      { label: "15% OFF", prize: "p15", color: "#C9A961" }
+      { label: "15% OFF", prize: "p15", color: "#C9A961" },
+      { label: "20% OFF", prize: "p20", color: "#1A1814" }
     ];
 
-    // Weighted landing: favors 10%, occasional 15%/$15, rare 20%.
-    // Values are relative weights for each WEDGE INDEX.
-    var WEIGHTS = [26, 14, 9, 26, 4, 0, 0, 0]; // sums into 10%(52) 15%(14) $15(18) 20%(4)
-    // (indexes 5,6,7 set to 0 so we route duplicates to a single winning index;
-    //  the wheel still *displays* all 8 wedges.)
+    // Weighted landing per WEDGE INDEX. Targets: 15% ≈ 55%, $15 ≈ 30%, 20% ≈ 15%.
+    // Four 15% wedges share 55 (≈13.75 each); two $15 wedges share 30 (15 each);
+    // two 20% wedges share 15 (7.5 each). Spread so the visual landing matches.
+    var WEIGHTS = [13.75, 15, 13.75, 7.5, 13.75, 15, 13.75, 7.5];
 
     var spun = false;
 
