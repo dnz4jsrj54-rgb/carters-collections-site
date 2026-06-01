@@ -16,6 +16,13 @@
   status = 200
   force = true
 
+# Spin-the-wheel: generate a unique single-use promo code per spin
+[[redirects]]
+  from = "/api/spin-reward"
+  to = "/.netlify/functions/spin-reward"
+  status = 200
+  force = true
+
 # Stripe webhook endpoint
 [[redirects]]
   from = "/api/stripe-webhook"

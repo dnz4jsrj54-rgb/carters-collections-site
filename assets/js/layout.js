@@ -205,6 +205,11 @@ document.addEventListener('DOMContentLoaded', function () {
     var SEEN_KEY = 'cc_exit_offer_seen_v1';
     if (localStorage.getItem(SEEN_KEY)) return;
 
+    // The homepage runs the spin-the-wheel instead of this exit popup, so they
+    // never collide. Skip the exit popup on the homepage.
+    var path = location.pathname.replace(/\/index\.html$/, '/');
+    if (path === '/' || path === '') return;
+
     var shown = false;
 
     function buildPopup() {
