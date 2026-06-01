@@ -93,14 +93,17 @@ exports.handler = async (event) => {
   const INTL_FREE_THRESHOLD_CENTS = 29900; // $299.00
   const INTL_FLAT_CENTS = 2900; // $29.00
 
-  // Countries we ship to internationally (starter set): Canada, UK, Australia,
-  // Hong Kong, plus the EU member states. US is domestic (free) and listed first.
+  // Countries we ship to internationally: Canada, UK, Australia, Hong Kong,
+  // Philippines, Colombia, Indonesia, plus the EU member states (incl. Poland).
+  // US is domestic (free) and listed first.
   const EU_COUNTRIES = [
     "AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR",
     "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK",
     "SI", "ES", "SE",
   ];
-  const ALLOWED_COUNTRIES = ["US", "CA", "GB", "AU", "HK", ...EU_COUNTRIES];
+  const ALLOWED_COUNTRIES = [
+    "US", "CA", "GB", "AU", "HK", "PH", "CO", "ID", ...EU_COUNTRIES,
+  ];
 
   // Subtotal in cents (pre-discount), based on the line items.
   const subtotalCents = items.reduce((sum, it) => {
