@@ -456,14 +456,14 @@ p { color: var(--text); }
 .collection-card.has-lifestyle::after {
   background: linear-gradient(180deg, rgba(15,14,12,0) 35%, rgba(15,14,12,0.85) 100%);
 }
-/* Text strip: dark band at bottom of packshot cards */
+/* Text strip: dark band at bottom of packshot cards (theme-stable) */
 .collection-card-body {
   position: absolute;
   inset: auto 0 0 0;
   padding: clamp(16px, 2vw, 28px) clamp(16px, 2vw, 24px);
   z-index: 1;
   color: #EDE6D8;
-  background: var(--text, #1A1815);
+  background: #1A1814;
 }
 .collection-card.has-lifestyle .collection-card-body { background: transparent; }
 .collection-card-body .eyebrow { color: var(--gold); margin-bottom: 6px; }
