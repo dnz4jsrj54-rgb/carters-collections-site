@@ -430,34 +430,48 @@ p { color: var(--text); }
   background: #FFFFFF;
   display: block;
 }
+/* Default packshot card: image floats above a solid text strip at the bottom */
 .collection-card img {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  width: 100%; height: 68%;
   object-fit: contain;
-  padding: 8% 8% 22% 8%;
+  padding: 8%;
   background: #FFFFFF;
   transition: transform 0.8s var(--ease);
 }
-.collections-grid-5 .collection-card img { padding: 10% 10% 26% 10%; }
-/* Lifestyle/editorial card (clothing) keeps full bleed */
-.collection-card.has-lifestyle img { object-fit: cover; padding: 0; }
+.collections-grid-5 .collection-card img { padding: 10%; height: 65%; }
+/* Lifestyle/editorial card (clothing) keeps full bleed under dark gradient */
+.collection-card.has-lifestyle img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  padding: 0;
+}
 .collection-card::after {
   content: "";
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(15,14,12,0) 55%, rgba(15,14,12,0.55) 85%, rgba(15,14,12,0.85) 100%);
+  background: none;
 }
+.collection-card.has-lifestyle::after {
+  background: linear-gradient(180deg, rgba(15,14,12,0) 35%, rgba(15,14,12,0.85) 100%);
+}
+/* Text strip: dark band at bottom of packshot cards */
 .collection-card-body {
   position: absolute;
   inset: auto 0 0 0;
-  padding: clamp(20px, 3vw, 36px);
+  padding: clamp(16px, 2vw, 28px) clamp(16px, 2vw, 24px);
   z-index: 1;
   color: #EDE6D8;
+  background: var(--text, #1A1815);
 }
-.collection-card-body .eyebrow { color: var(--gold); margin-bottom: 8px; }
+.collection-card.has-lifestyle .collection-card-body { background: transparent; }
+.collection-card-body .eyebrow { color: var(--gold); margin-bottom: 6px; }
 .collection-card-body h3 {
-  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  font-size: clamp(1.15rem, 1.6vw, 1.75rem);
   color: #EDE6D8;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
+  line-height: 1.15;
 }
 .collection-card-body .arrow {
   display: inline-flex;
