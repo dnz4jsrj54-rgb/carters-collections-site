@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" as="image" href="assets/images/hero.jpg" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css?v=202606010638" />
+  <link rel="stylesheet" href="assets/css/style.css?v=202606102005" />
   <!-- carters-seo-injected -->
   <link rel="canonical" href="https://carterscollections.com/index.html" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -123,10 +123,17 @@
       <div class="container hero-content">
         <span class="eyebrow">Est. 2026 · Austin, Texas</span>
         <h1>Carter's <em>Collections</em> <span class="sr-only">— Designer & Niche Fragrance, Hand-Picked in Austin</span></h1>
-        <p class="hero-sub">Designer &amp; niche fragrances and dresses worth keeping — <strong>up to 70% off retail</strong>. Authentic, hand-picked in Austin, shipped fast.</p>
+        <p class="hero-sub">Designer &amp; niche fragrances, handbags, sunglasses, and dresses worth keeping — <strong>up to 70% off retail</strong>. Authentic, hand-picked in Austin, shipped fast.</p>
         <div class="hero-cta-row">
-          <a href="pages/clothing.html" class="btn btn-primary">Shop Womenswear</a>
-          <a href="pages/fragrances-men.html" class="btn btn-ghost">Shop Fragrances</a>
+          <a class='btn btn-primary' href='/pages/fragrances-men'>Shop Fragrances</a>
+          <a class='btn btn-ghost' href='/pages/bags'>Shop Bags</a>
+          <a class='btn btn-ghost' href='/pages/sunglasses'>Shop Sunglasses</a>
+        </div>
+        <div class="hero-trust-strip" style="display:flex; flex-wrap:wrap; justify-content:center; gap:18px 28px; margin-top:22px; font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted);">
+          <span>✓ Free U.S. Shipping</span>
+          <span>✓ 100% Authentic</span>
+          <span>✓ Hand-Picked in Austin</span>
+          <span>✓ Up to 70% Off Retail</span>
         </div>
       </div>
     </section>
@@ -148,10 +155,10 @@
             <span class="eyebrow">The Collections</span>
             <h2>Fragrance. Form. Feeling.</h2>
           </div>
-          <a href="pages/about.html" class="link">Our Philosophy →</a>
+          <a class='link' href='/pages/about'>Our Philosophy →</a>
         </div>
         <div class="collections-grid">
-          <a href="pages/fragrances-men.html" class="collection-card reveal">
+          <a class='collection-card reveal' href='/pages/fragrances-men'>
             <img src="assets/images/collection-men.jpg" alt="Men's fragrance display on dark stone" loading="lazy" />
             <div class="collection-card-body">
               <span class="eyebrow">No. 01</span>
@@ -159,7 +166,7 @@
               <span class="arrow">Explore →</span>
             </div>
           </a>
-          <a href="pages/fragrances-women.html" class="collection-card reveal">
+          <a class='collection-card reveal' href='/pages/fragrances-women'>
             <img src="assets/images/collection-women.jpg" alt="Women's fragrance bottle with roses" loading="lazy" />
             <div class="collection-card-body">
               <span class="eyebrow">No. 02</span>
@@ -167,7 +174,7 @@
               <span class="arrow">Explore →</span>
             </div>
           </a>
-          <a href="pages/clothing.html" class="collection-card reveal">
+          <a class='collection-card reveal' href='/pages/clothing'>
             <img src="assets/images/collection-clothing.jpg" alt="Champagne silk slip dress on hanger" loading="lazy" />
             <div class="collection-card-body">
               <span class="eyebrow">No. 03</span>
@@ -187,7 +194,7 @@
             <span class="eyebrow">Most Loved</span>
             <h2>Bestsellers</h2>
           </div>
-          <a href="pages/fragrances-women.html" class="link">View All →</a>
+          <a class='link' href='/pages/fragrances-women'>Shop All →</a>
         </div>
         <div class="product-grid product-grid-4" id="bestsellers-grid"></div>
       </div>
@@ -205,7 +212,7 @@
             <h2>It started at home.</h2>
             <p>Carter's Collections began as a personal collection — fragrances my wife and I had quietly fallen in love with, kept on a shelf at home and reached for nearly every day. After enough compliments from friends and strangers asking the same question — <em>what are you wearing?</em> — we decided to share them.</p>
             <p>Every bottle here is one we wear, sourced through authorized channels and offered at the best prices we can. From our shelf to yours.</p>
-            <a href="pages/about.html" class="btn btn-outline">Read Our Story</a>
+            <a class='btn btn-outline' href='/pages/about'>Read Our Story</a>
           </div>
         </div>
       </div>
@@ -217,7 +224,7 @@
         <span class="eyebrow">Stay In Touch</span>
         <h2>Letters from the atelier</h2>
         <p>A quiet quarterly note — new arrivals, the perfumer's bench, and seasonal edits. No noise.</p>
-        <form class="newsletter-form" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+        <form class='newsletter-form' method='POST' name='newsletter' novalidate>
           <input type="hidden" name="form-name" value="newsletter" />
           <input type="hidden" name="source" value="" />
           <p class="hidden" style="display:none"><label>Don’t fill this out: <input name="bot-field" /></label></p>
@@ -230,12 +237,12 @@
 
   <div id="footer-slot"></div>
 
-  <script src="assets/js/layout.js?v=202606010638"></script>
-  <script src="assets/js/app.js?v=202606010638"></script>
-  <script src="assets/js/spin-wheel.js?v=202606010638"></script>
+  <script src="assets/js/layout.js?v=202606102005"></script>
+  <script src="assets/js/app.js?v=202606102005"></script>
+  <script src="assets/js/spin-wheel.js?v=202606102005"></script>
   <script>
-    // Bestsellers selection — lead with the four real products
-    const featured = ['w23', 'c1', 'm1', 'm2'];
+    // Bestsellers selection — mix across categories (frag, bags, sunglasses, clothing)
+    const featured = ['m1', 'w1', 'm17', 'b2', 'b1', 'g16', 'g3', 'c1'];
     const grid = document.getElementById('bestsellers-grid');
     grid.innerHTML = featured.map(id => productCardHTML(CARTER_CATALOG[id])).join('');
     bindAddButtons(grid);

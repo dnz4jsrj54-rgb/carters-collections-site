@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/css/style.css?v=202606010638" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=202606102005" />
   <style>
     .accent-champagne .filter-chip.is-active { background: var(--champagne, #C7A77A); border-color: var(--champagne, #C7A77A); color: #0F0E0C; }
     .accent-champagne .page-header .eyebrow { color: var(--champagne, #C7A77A); }
@@ -78,6 +78,16 @@
           <button class="filter-chip" data-filter="Men&rsquo;s Bags">Men's Bags</button>
           <button class="filter-chip" data-filter="Wallets &amp; Small Leather Goods">Wallets & SLG</button>
         </div>
+        <div class="filter-row reveal" id="brand-row" style="margin-top:10px;">
+          <span style="font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--text-muted); align-self:center; margin-right:4px;">Brand:</span>
+          <button class="filter-chip is-active" data-brand="all">All Brands</button>
+          <button class="filter-chip" data-brand="Burberry">Burberry</button>
+          <button class="filter-chip" data-brand="Michael Kors">Michael Kors</button>
+          <button class="filter-chip" data-brand="Marc Jacobs">Marc Jacobs</button>
+          <button class="filter-chip" data-brand="Montblanc">Montblanc</button>
+          <button class="filter-chip" data-brand="Stella McCartney">Stella McCartney</button>
+          <button class="filter-chip" data-brand="Coach">Coach</button>
+        </div>
         <div id="sections"></div>
       </div>
     </section>
@@ -87,7 +97,7 @@
         <span class="eyebrow">Stay In Touch</span>
         <h2>Letters from the atelier</h2>
         <p>A quiet quarterly note — new arrivals, restocks, and seasonal edits.</p>
-        <form class="newsletter-form" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+        <form class='newsletter-form' method='POST' name='newsletter' novalidate>
           <input type="hidden" name="form-name" value="newsletter" />
           <p class="hidden" style="display:none"><label>Don’t fill this out: <input name="bot-field" /></label></p>
           <input type="email" name="email" placeholder="Your email" aria-label="Email address" required />
@@ -99,8 +109,8 @@
 
   <div id="footer-slot"></div>
 
-  <script src="../assets/js/layout.js?v=202606010638"></script>
-  <script src="../assets/js/app.js?v=202606010638"></script>
+  <script src="../assets/js/layout.js?v=202606102005"></script>
+  <script src="../assets/js/app.js?v=202606102005"></script>
   <script>
     // Pull every bag from the catalog (cat==='bag'). Scales automatically as new bags are added.
     const SECTION_ORDER = ['Women’s Handbags', 'Men’s Bags', 'Wallets & Small Leather Goods'];
@@ -115,13 +125,23 @@
       return map;
     }
 
-    function render(filter) {
-      const filtered = filter === 'all' ? all : all.filter(p => (p.section || 'Other') === filter);
+    let currentSection = 'all';
+    let currentBrand = 'all';
+
+    function getBrand(p) {
+      const sub = p.subtitle || '';
+      return sub.replace(/^by\s+/i, '').trim();
+    }
+
+    function render() {
+      let filtered = all;
+      if (currentSection !== 'all') filtered = filtered.filter(p => (p.section || 'Other') === currentSection);
+      if (currentBrand !== 'all') filtered = filtered.filter(p => getBrand(p) === currentBrand);
       const grouped = bySection(filtered);
-      const sections = (filter === 'all' ? SECTION_ORDER : [filter]).filter(s => grouped[s] && grouped[s].length);
+      const sections = (currentSection === 'all' ? SECTION_ORDER : [currentSection]).filter(s => grouped[s] && grouped[s].length);
       const root = document.getElementById('sections');
       if (!sections.length) {
-        root.innerHTML = '<div class="clothing-empty">More pieces arriving soon.</div>';
+        root.innerHTML = '<div class="clothing-empty">No pieces match these filters. Try clearing one.</div>';
         return;
       }
       root.innerHTML = sections.map(s => `
@@ -143,14 +163,23 @@
       });
     }
 
-    render('all');
+    render();
 
     document.getElementById('filter-row').addEventListener('click', (e) => {
       const btn = e.target.closest('.filter-chip');
       if (!btn) return;
       document.querySelectorAll('#filter-row .filter-chip').forEach(b => b.classList.remove('is-active'));
       btn.classList.add('is-active');
-      render(btn.dataset.filter);
+      currentSection = btn.dataset.filter;
+      render();
+    });
+    document.getElementById('brand-row').addEventListener('click', (e) => {
+      const btn = e.target.closest('.filter-chip');
+      if (!btn) return;
+      document.querySelectorAll('#brand-row .filter-chip').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      currentBrand = btn.dataset.brand;
+      render();
     });
   </script>
 </body>
