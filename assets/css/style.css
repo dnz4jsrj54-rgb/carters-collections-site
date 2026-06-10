@@ -493,6 +493,13 @@ p { color: var(--text); }
   gap: clamp(24px, 3vw, 48px) clamp(20px, 2.5vw, 32px);
 }
 .product-grid-4 { grid-template-columns: repeat(4, 1fr); }
+.product-grid-3 { grid-template-columns: repeat(3, 1fr); }
+/* Cross-category bundle section (PDP) */
+.product-pairs {
+  border-top: 1px solid var(--border);
+  margin-top: clamp(24px, 4vw, 56px);
+}
+.product-pairs .eyebrow { color: var(--gold); }
 
 .product-card {
   display: block;
@@ -1123,6 +1130,7 @@ p { color: var(--text); }
   .collections-grid-5 { grid-template-columns: repeat(2, 1fr); }
   .product-grid { grid-template-columns: repeat(2, 1fr); }
   .product-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .product-grid-3 { grid-template-columns: repeat(3, 1fr); }
   .story-strip { grid-template-columns: 1fr; }
   .about-intro { grid-template-columns: 1fr; }
   .about-two-col { grid-template-columns: 1fr; }
@@ -1134,7 +1142,7 @@ p { color: var(--text); }
 }
 
 @media (max-width: 560px) {
-  .product-grid, .product-grid-4 { grid-template-columns: 1fr; }
+  .product-grid, .product-grid-4, .product-grid-3 { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .footer-brand { grid-column: 1 / -1; }
   .cart-item { grid-template-columns: 80px 1fr; grid-template-rows: auto auto; }

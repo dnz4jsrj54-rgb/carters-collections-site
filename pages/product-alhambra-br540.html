@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/css/style.css?v=202606102103" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=202606102137" />
   <!-- carters-seo-injected -->
   <link rel="canonical" href="https://carterscollections.com/pages/product-alhambra-br540.html" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -48,9 +48,9 @@
 {
   "@context": "https://schema.org/",
   "@type": "Product",
-  "name": "Baroque Rouge 540 — by Maison Alhambra",
+  "name": "Baroque Rouge 540 \u2014 by Maison Alhambra",
   "image": "https://carterscollections.com/assets/real-products/w18_1.jpg",
-  "description": "Baroque Rouge 540 by Maison Alhambra. Jasmine · Egyptian Grandiflorum · Saffron · Cedar. Authentic designer fragrance, shipped from Austin, Texas.",
+  "description": "Baroque Rouge 540 by Maison Alhambra. Jasmine \u00b7 Egyptian Grandiflorum \u00b7 Saffron \u00b7 Cedar. Authentic designer fragrance, shipped from Austin, Texas.",
   "brand": {
     "@type": "Brand",
     "name": "Maison Alhambra"
@@ -183,7 +183,7 @@
         </div>
         <div class="ship-badge" style="margin-top:14px; padding:10px 14px; background:rgba(196,158,88,0.08); border:1px solid rgba(196,158,88,0.25); border-radius:6px; font-size:0.8rem; color:var(--text); display:flex; align-items:center; gap:10px;">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v8H3z"/><path d="M14 10h4l3 3v2h-7"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
-          <span><strong style="color:var(--gold);">Free U.S. shipping</strong> &middot; International free over $299 or $29 flat &middot; Ships in 1–2 business days from Austin (7–21 days international). Customs duties may apply on delivery.</span>
+          <span><strong style="color:var(--gold);">Free U.S. shipping</strong> &middot; International free over $349 or $35 flat &middot; Ships in 1–2 business days from Austin (5–10 days international)</span>
         </div>
 
         <details class="expandable" open>
@@ -212,12 +212,24 @@
         <div class="product-grid product-grid-4" id="related-grid"></div>
       </div>
     </section>
+    <section class="section-tight product-pairs">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">Complete The Look</span>
+            <h2>Pairs perfectly with</h2>
+          </div>
+        </div>
+        <div class="product-grid product-grid-3" id="pairs-grid"></div>
+      </div>
+    </section>
+
   </main>
 
   <div id="footer-slot"></div>
 
-  <script src="../assets/js/layout.js?v=202606102103"></script>
-  <script src="../assets/js/app.js?v=202606102103"></script>
+  <script src="../assets/js/layout.js?v=202606102137"></script>
+  <script src="../assets/js/app.js?v=202606102137"></script>
   <script>
     const mainImg = document.getElementById('main-img');
     let qty = 1;
@@ -249,6 +261,9 @@
         entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
       }, { threshold: 0.08 }).observe(el);
     });
+  
+
+    renderCrossBundle('pairs-grid', 'w18');
   </script>
 </body>
 </html>

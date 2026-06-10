@@ -438,6 +438,127 @@ function bindNewsletter() {
 }
 
 // ============================================================
+// Cross-category PDP bundle ("Pairs perfectly with")
+// ============================================================
+// Curated anchor pools per gender slice. Items here should be evergreen
+// bestsellers/iconic with hero photography. Keep small lists so the picker
+// rotates predictably and feels intentional.
+const CROSS_BUNDLE_POOL = {
+  // Women-leaning anchors
+  wHandbag:   ['b2', 'b1', 'b3', 'b16', 'b17'],
+  wSunglass:  ['g16', 'g8', 'g21', 'g13', 'g11'],
+  wDress:     ['c1', 'c12', 'c4', 'c3', 'c2'],
+  wFragrance: ['w15', 'w23', 'w6', 'w3', 'w16', 'w5', 'w2'],
+  // Men-leaning anchors
+  mBag:       ['b8', 'b24', 'b23', 'b9'],
+  mSunglass:  ['g16', 'g14', 'g19', 'g2', 'g9'],
+  mFragrance: ['m4', 'm15', 'm3', 'm5', 'm12'],
+};
+
+function _isWomensSection(section) {
+  return /Women|Wallets/.test(section || '');
+}
+function _isMensSection(section) {
+  return /Men/.test(section || '') && !/Women/.test(section || '');
+}
+// Pick first item from `pool` that exists in catalog and is not in `excludeIds`.
+function _pickFromPool(pool, excludeIds) {
+  if (!pool) return null;
+  for (const id of pool) {
+    if (excludeIds.has(id)) continue;
+    if (CARTER_CATALOG[id]) return id;
+  }
+  return null;
+}
+
+// Return an array of 3 product IDs from DIFFERENT categories than `currentId`,
+// gender-matched where possible. Returns [] if the current product is unknown.
+function crossCategoryBundle(currentId) {
+  const cur = CARTER_CATALOG[currentId];
+  if (!cur) return [];
+  const exclude = new Set([currentId]);
+  const womens = _isWomensSection(cur.section);
+  const mens   = _isMensSection(cur.section);
+  // Default to women-leaning if section is ambiguous (Unisex Eyewear, etc.)
+  const lean = mens ? 'm' : 'w';
+
+  const picks = [];
+  function add(pool) {
+    const id = _pickFromPool(pool, exclude);
+    if (id) { picks.push(id); exclude.add(id); }
+  }
+
+  if (cur.cat === 'fragrance') {
+    if (lean === 'm') {
+      add(CROSS_BUNDLE_POOL.mBag);
+      add(CROSS_BUNDLE_POOL.mSunglass);
+      add(CROSS_BUNDLE_POOL.mFragrance); // companion/gift second fragrance
+    } else {
+      add(CROSS_BUNDLE_POOL.wHandbag);
+      add(CROSS_BUNDLE_POOL.wSunglass);
+      add(CROSS_BUNDLE_POOL.wDress);
+    }
+  } else if (cur.cat === 'bag') {
+    if (lean === 'm') {
+      add(CROSS_BUNDLE_POOL.mFragrance);
+      add(CROSS_BUNDLE_POOL.mSunglass);
+      add(CROSS_BUNDLE_POOL.wFragrance); // gift angle
+    } else {
+      add(CROSS_BUNDLE_POOL.wFragrance);
+      add(CROSS_BUNDLE_POOL.wSunglass);
+      add(CROSS_BUNDLE_POOL.wDress);
+    }
+  } else if (cur.cat === 'sunglasses') {
+    if (lean === 'm') {
+      add(CROSS_BUNDLE_POOL.mFragrance);
+      add(CROSS_BUNDLE_POOL.mBag);
+      add(CROSS_BUNDLE_POOL.wFragrance);
+    } else {
+      add(CROSS_BUNDLE_POOL.wFragrance);
+      add(CROSS_BUNDLE_POOL.wHandbag);
+      add(CROSS_BUNDLE_POOL.wDress);
+    }
+  } else if (cur.cat === 'clothing') {
+    add(CROSS_BUNDLE_POOL.wFragrance);
+    add(CROSS_BUNDLE_POOL.wHandbag);
+    add(CROSS_BUNDLE_POOL.wSunglass);
+  }
+
+  // Final safety net: if anything is still missing or duplicates current cat,
+  // backfill from any bestseller in a different category.
+  if (picks.length < 3) {
+    for (const id of Object.keys(CARTER_CATALOG)) {
+      if (picks.length >= 3) break;
+      const p = CARTER_CATALOG[id];
+      if (!p || exclude.has(id)) continue;
+      if (p.cat === cur.cat) continue;
+      picks.push(id);
+      exclude.add(id);
+    }
+  }
+  return picks.slice(0, 3);
+}
+window.crossCategoryBundle = crossCategoryBundle;
+
+// Render the cross bundle into a container. Returns true if rendered.
+function renderCrossBundle(containerId, currentId) {
+  const el = document.getElementById(containerId);
+  if (!el) return false;
+  const ids = crossCategoryBundle(currentId);
+  if (!ids.length) { el.parentElement && (el.parentElement.style.display = 'none'); return false; }
+  el.innerHTML = ids.map(id => productCardHTML(CARTER_CATALOG[id])).join('');
+  bindAddButtons(el);
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('is-visible'); obs.unobserve(en.target); } });
+    }, { threshold: 0.08 });
+    el.querySelectorAll('.reveal').forEach(node => io.observe(node));
+  }
+  return true;
+}
+window.renderCrossBundle = renderCrossBundle;
+
+// ============================================================
 // Init
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {

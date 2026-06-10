@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/css/style.css?v=202606102103" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=202606102137" />
   <link rel="canonical" href="https://carterscollections.com/pages/product-burberry-grey-square-be4293-380687-56.html" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="theme-color" content="#0F0E0C" />
@@ -125,12 +125,24 @@
         <div class="product-grid product-grid-4" id="related-grid"></div>
       </div>
     </section>
+    <section class="section-tight product-pairs">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">Complete The Look</span>
+            <h2>Pairs perfectly with</h2>
+          </div>
+        </div>
+        <div class="product-grid product-grid-3" id="pairs-grid"></div>
+      </div>
+    </section>
+
   </main>
 
   <div id="footer-slot"></div>
 
-  <script src="../assets/js/layout.js?v=202606102103"></script>
-  <script src="../assets/js/app.js?v=202606102103"></script>
+  <script src="../assets/js/layout.js?v=202606102137"></script>
+  <script src="../assets/js/app.js?v=202606102137"></script>
   <script>
     let qty = 1;
     const qtyVal = document.getElementById('qty-value');
@@ -143,6 +155,9 @@
     document.getElementById('related-grid').innerHTML =
       related.map(id => CARTER_CATALOG[id] ? productCardHTML(CARTER_CATALOG[id]) : '').join('');
     bindAddButtons(document.getElementById('related-grid'));
+  
+
+    renderCrossBundle('pairs-grid', 'g9');
   </script>
 </body>
 </html>
