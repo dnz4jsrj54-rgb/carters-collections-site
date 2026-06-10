@@ -422,23 +422,29 @@ p { color: var(--text); }
   grid-template-columns: repeat(3, 1fr);
   gap: clamp(16px, 2vw, 28px);
 }
+.collections-grid-5 { grid-template-columns: repeat(5, 1fr); }
 .collection-card {
   position: relative;
   aspect-ratio: 3 / 4;
   overflow: hidden;
-  background: var(--surface);
+  background: #FFFFFF;
   display: block;
 }
 .collection-card img {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  padding: 8% 8% 22% 8%;
+  background: #FFFFFF;
   transition: transform 0.8s var(--ease);
 }
+.collections-grid-5 .collection-card img { padding: 10% 10% 26% 10%; }
+/* Lifestyle/editorial card (clothing) keeps full bleed */
+.collection-card.has-lifestyle img { object-fit: cover; padding: 0; }
 .collection-card::after {
   content: "";
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(15,14,12,0) 35%, rgba(15,14,12,0.85) 100%);
+  background: linear-gradient(180deg, rgba(15,14,12,0) 55%, rgba(15,14,12,0.55) 85%, rgba(15,14,12,0.85) 100%);
 }
 .collection-card-body {
   position: absolute;
@@ -1100,6 +1106,7 @@ p { color: var(--text); }
   .nav-primary { display: none; }
   .hamburger { display: inline-flex; }
   .collections-grid { grid-template-columns: 1fr; }
+  .collections-grid-5 { grid-template-columns: repeat(2, 1fr); }
   .product-grid { grid-template-columns: repeat(2, 1fr); }
   .product-grid-4 { grid-template-columns: repeat(2, 1fr); }
   .story-strip { grid-template-columns: 1fr; }
