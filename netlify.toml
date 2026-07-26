@@ -44,6 +44,13 @@
   status = 301
   force = true
 
+# Retire an obsolete prototype product page that contained placeholder merchandise.
+[[redirects]]
+  from = "/pages/product.html"
+  to = "/pages/fragrances-men.html"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/pages/bags"
   to = "/pages/bags.html"

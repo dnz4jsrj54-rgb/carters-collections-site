@@ -221,8 +221,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <ul>
               <li><a href="${P('about.html')}">Our Story</a></li>
               <li><a href="${P('about.html')}">Provenance</a></li>
-
-              <li><a href="${P('about.html')}">Journal</a></li>
+              <li><a href="${P('contact.html')}">Contact Us</a></li>
             </ul>
           </div>
           <div class="footer-col">
@@ -238,7 +237,6 @@ document.addEventListener('DOMContentLoaded', function () {
           <div class="footer-col">
             <h4>Connect</h4>
             <div class="footer-socials">
-              <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a>
               <a href="https://www.pinterest.com/1dhk4ykvcwtywxu6ix8q2z8myzpta0/" target="_blank" rel="noopener noreferrer" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M11 21c.7-2 .8-3 1-5l1-5"/><path d="M9 9c.5-2 2-3 4-3 2.5 0 4 1.6 4 4 0 3-2 5-4 5-1.6 0-2.5-1-2-2"/></svg></a>
               <a href="https://www.tiktok.com/@cart3rscoll3ctions" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M15 3v10.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M15 3c.5 2.5 2.5 4.5 5 5"/></svg></a>
             </div>
