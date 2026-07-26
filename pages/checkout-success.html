@@ -87,8 +87,8 @@
 
   <div id="footer-slot"></div>
 
-  <script src="../assets/js/layout.js?v=202607261635"></script>
-  <script src="../assets/js/app.js?v=202607261635"></script>
+  <script src="../assets/js/layout.js?v=202607261745"></script>
+  <script src="../assets/js/app.js?v=202607261745"></script>
   <script>
     // Clear the cart on successful checkout
     if (window.CARTER_STATE) {
@@ -111,8 +111,14 @@
     // includes (a) accurate value for ROAS tracking, (b) enhanced match for higher attribution.
     (async function firePurchase() {
       if (!sid || !sid.startsWith('cs_')) return;
-      const firedKey = 'pintrk_purchase_' + sid;
-      if (sessionStorage.getItem(firedKey)) return; // already fired this session
+      const pinFiredKey = 'pintrk_purchase_' + sid;
+      const ga4FiredKey = 'ga4_purchase_' + sid;
+      const metaFiredKey = 'meta_purchase_' + sid;
+      if (
+        sessionStorage.getItem(pinFiredKey) &&
+        sessionStorage.getItem(ga4FiredKey) &&
+        sessionStorage.getItem(metaFiredKey)
+      ) return;
 
       try {
         const res = await fetch('/api/get-session?session_id=' + encodeURIComponent(sid));
@@ -120,7 +126,7 @@
         const data = await res.json();
         if (!data || !data.ok || !data.amount_total) return;
 
-        if (typeof pintrk === 'function') {
+        if (typeof pintrk === 'function' && !sessionStorage.getItem(pinFiredKey)) {
           // Re-attach enhanced match (hashed email) for this user.
           if (data.email_sha256) {
             pintrk('load', '2613927087053', { em: data.email_sha256 });
@@ -132,12 +138,11 @@
             order_id: data.order_id,
             currency: data.currency || 'USD'
           });
-          sessionStorage.setItem(firedKey, '1');
+          sessionStorage.setItem(pinFiredKey, '1');
         }
 
         // GA4 — purchase event (verified server-side via Stripe)
-        const ga4Key = 'ga4_purchase_' + sid;
-        if (typeof gtag === 'function' && !sessionStorage.getItem(ga4Key)) {
+        if (typeof gtag === 'function' && !sessionStorage.getItem(ga4FiredKey)) {
           gtag('event', 'purchase', {
             transaction_id: data.order_id,
             value: data.amount_total,
@@ -151,7 +156,20 @@
                 }))
               : [{ item_id: data.order_id, item_name: 'Order', price: data.amount_total, quantity: data.item_count || 1 }]
           });
-          sessionStorage.setItem(ga4Key, '1');
+          sessionStorage.setItem(ga4FiredKey, '1');
+        }
+
+        // Meta Pixel — Purchase event using the verified Stripe total.
+        if (typeof fbq === 'function' && !sessionStorage.getItem(metaFiredKey)) {
+          fbq('track', 'Purchase', {
+            value: data.amount_total,
+            currency: data.currency || 'USD',
+            content_type: 'product',
+            num_items: data.item_count || 1
+          }, {
+            eventID: data.order_id
+          });
+          sessionStorage.setItem(metaFiredKey, '1');
         }
       } catch (e) { /* analytics must never break the page */ }
     })();

@@ -395,6 +395,25 @@ function addToCart(productId, qty, size, color) {
       });
     }
   } catch (e) { /* never break checkout for analytics */ }
+  // Meta Pixel — AddToCart event
+  try {
+    if (typeof fbq === 'function') {
+      const p = (window.CARTER_CATALOG || {})[productId] || {};
+      fbq('track', 'AddToCart', {
+        content_ids: [productId],
+        content_name: p.name || productId,
+        content_category: p.cat || 'fragrance',
+        content_type: 'product',
+        value: Number(p.price || 0) * qty,
+        currency: 'USD',
+        contents: [{
+          id: productId,
+          quantity: qty,
+          item_price: Number(p.price || 0)
+        }]
+      });
+    }
+  } catch (e) { /* never break cart for analytics */ }
   // GA4 — add_to_cart event
   try {
     if (typeof gtag === 'function') {

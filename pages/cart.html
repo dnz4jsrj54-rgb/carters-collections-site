@@ -68,8 +68,8 @@
 
   <div id="footer-slot"></div>
 
-  <script src="../assets/js/layout.js?v=202607261635"></script>
-  <script src="../assets/js/app.js?v=202607261635"></script>
+  <script src="../assets/js/layout.js?v=202607261745"></script>
+  <script src="../assets/js/app.js?v=202607261745"></script>
   <script>
     function renderCartPage() {
       const c = window.CARTER_STATE.cart;
@@ -197,6 +197,32 @@
                   product_price: Number(p.price || 0),
                   product_quantity: item.qty,
                   product_category: p.cat || 'fragrance'
+                };
+              })
+            });
+          }
+        } catch (e) { /* never break checkout for analytics */ }
+
+        // Meta Pixel — InitiateCheckout event
+        try {
+          if (typeof fbq === 'function') {
+            const cartTotal = c.reduce((sum, item) => {
+              const p = CARTER_CATALOG[item.id];
+              return sum + (p ? Number(p.price) * item.qty : 0);
+            }, 0);
+            const totalQty = c.reduce((sum, item) => sum + item.qty, 0);
+            fbq('track', 'InitiateCheckout', {
+              content_ids: c.map(item => item.id),
+              content_type: 'product',
+              value: cartTotal,
+              currency: 'USD',
+              num_items: totalQty,
+              contents: c.map(item => {
+                const p = CARTER_CATALOG[item.id] || {};
+                return {
+                  id: item.id,
+                  quantity: item.qty,
+                  item_price: Number(p.price || 0)
                 };
               })
             });
