@@ -1,0 +1,68 @@
+.under-100-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 28px;
+  margin-top: 28px;
+}
+.under-100-links a {
+  color: var(--gold);
+  font-size: 0.76rem;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+.under-100-guide {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.under-100-guide-grid {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.8fr) minmax(320px, 1.2fr);
+  gap: clamp(32px, 7vw, 100px);
+  align-items: start;
+}
+.under-100-guide-grid h2 { margin-top: 8px; }
+.under-100-guide-grid p {
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+.under-100-guide-grid strong {
+  color: var(--text);
+  font-weight: 500;
+}
+.under-100-count {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+.under-100-faq {
+  margin-top: clamp(80px, 12vw, 140px);
+  border-top: 1px solid var(--border);
+}
+.under-100-faq h2 { margin: 10px 0 36px; }
+.under-100-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(28px, 5vw, 64px);
+}
+.under-100-faq-grid h3 {
+  margin-bottom: 12px;
+  font-size: 1.25rem;
+}
+.under-100-faq-grid p {
+  color: var(--text-muted);
+  line-height: 1.75;
+}
+.under-100-faq-grid a { color: var(--gold); }
+
+@media (max-width: 760px) {
+  .under-100-guide-grid,
+  .under-100-faq-grid { grid-template-columns: 1fr; }
+  .under-100-count { align-items: flex-end; }
+}
