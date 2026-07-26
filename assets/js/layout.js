@@ -12,11 +12,50 @@
 pintrk('load', '2613927087053');
 pintrk('page');
 
+/* ============================================================
+   Meta Pixel (base) — PageView on every page and ViewContent on
+   product pages. Commerce events live beside the existing cart
+   and verified Stripe purchase hooks.
+   ============================================================ */
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '968057633988265');
+fbq('track', 'PageView');
+
 // <noscript> fallback pixel — injected on DOMContentLoaded so it lands inside <body>.
 document.addEventListener('DOMContentLoaded', function () {
   var ns = document.createElement('noscript');
   ns.innerHTML = '<img height="1" width="1" style="display:none;" alt="" src="https://ct.pinterest.com/v3/?event=init&tid=2613927087053&noscript=1" />';
   document.body.appendChild(ns);
+
+  var metaNs = document.createElement('noscript');
+  metaNs.innerHTML = '<img height="1" width="1" style="display:none;" alt="" src="https://www.facebook.com/tr?id=968057633988265&ev=PageView&noscript=1" />';
+  document.body.appendChild(metaNs);
+
+  // Product JSON-LD is the canonical source for PDP view events.
+  try {
+    var product;
+    document.querySelectorAll('script[type="application/ld+json"]').forEach(function (script) {
+      if (product) return;
+      var data = JSON.parse(script.textContent);
+      var nodes = Array.isArray(data) ? data : (data['@graph'] || [data]);
+      product = nodes.find(function (node) { return node && node['@type'] === 'Product'; });
+    });
+    if (product && typeof fbq === 'function') {
+      var offer = Array.isArray(product.offers) ? product.offers[0] : product.offers;
+      var productId = product.sku || product.productID || product.mpn || location.pathname;
+      fbq('track', 'ViewContent', {
+        content_ids: [String(productId)],
+        content_name: product.name || document.title,
+        content_type: 'product',
+        value: Number(offer && offer.price || 0),
+        currency: String(offer && offer.priceCurrency || 'USD').toUpperCase()
+      });
+    }
+  } catch (e) { /* analytics must never break the page */ }
 });
 
 (function () {
