@@ -72,6 +72,12 @@ document.addEventListener('DOMContentLoaded', function () {
           <a href="${P('about.html')}">About</a>
         </nav>
         <div class="header-actions">
+          <button class="icon-btn search-toggle" aria-label="Search products" aria-haspopup="dialog" aria-controls="site-search-dialog">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"/>
+              <path d="m20 20-4-4"/>
+            </svg>
+          </button>
           <button class="icon-btn theme-toggle" aria-label="Toggle light or dark theme">
             <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
@@ -119,6 +125,33 @@ document.addEventListener('DOMContentLoaded', function () {
         <li><a href="${P('about.html')}" data-close>About</a></li>
         <li><a href="${P('cart.html')}" data-close>Cart</a></li>
       </ul>
+    </div>
+
+    <div class="site-search" id="site-search-dialog" role="dialog" aria-modal="true" aria-labelledby="site-search-title" aria-hidden="true">
+      <button class="site-search-backdrop" type="button" data-search-close tabindex="-1" aria-label="Close search"></button>
+      <section class="site-search-panel">
+        <div class="site-search-head">
+          <div>
+            <span class="eyebrow">The full collection</span>
+            <h2 id="site-search-title">Search products</h2>
+          </div>
+          <button class="icon-btn site-search-close" type="button" data-search-close aria-label="Close search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true">
+              <path d="m6 6 12 12M18 6 6 18"/>
+            </svg>
+          </button>
+        </div>
+        <label class="site-search-label" for="site-search-input">Search by product, brand, category, or notes</label>
+        <div class="site-search-input-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"/>
+            <path d="m20 20-4-4"/>
+          </svg>
+          <input id="site-search-input" type="search" autocomplete="off" enterkeyhint="search" placeholder="Try “Lattafa”, “bags”, or “vanilla”" aria-describedby="site-search-status" />
+        </div>
+        <div class="site-search-status" id="site-search-status" role="status" aria-live="polite"></div>
+        <div class="site-search-results" id="site-search-results"></div>
+      </section>
     </div>
   `;
 

@@ -219,6 +219,140 @@ function initHeader() {
   updateCartCount();
 }
 
+// ============================================================
+// Site-wide catalog search
+// ============================================================
+function initSiteSearch() {
+  const dialog = document.getElementById('site-search-dialog');
+  const input = document.getElementById('site-search-input');
+  const results = document.getElementById('site-search-results');
+  const status = document.getElementById('site-search-status');
+  const toggles = document.querySelectorAll('.search-toggle');
+  if (!dialog || !input || !results || !status || !toggles.length) return;
+
+  const products = Object.values(window.CARTER_CATALOG || {}).filter(p => p && p.detail);
+  let lastFocus = null;
+
+  function escapeHTML(value) {
+    return String(value || '').replace(/[&<>"']/g, char => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[char]);
+  }
+
+  function searchText(p) {
+    return [p.name, p.subtitle, p.cat, p.section, p.notes, p.badge]
+      .filter(Boolean).join(' ').toLocaleLowerCase();
+  }
+
+  function score(p, query) {
+    const name = String(p.name || '').toLocaleLowerCase();
+    const brand = String(p.subtitle || '').replace(/^by\s+/i, '').toLocaleLowerCase();
+    const category = `${p.cat || ''} ${p.section || ''}`.toLocaleLowerCase();
+    if (name === query) return 100;
+    if (name.startsWith(query)) return 80;
+    if (brand.startsWith(query)) return 70;
+    if (name.includes(query)) return 60;
+    if (brand.includes(query)) return 50;
+    if (category.includes(query)) return 40;
+    if (searchText(p).includes(query)) return 20;
+    return 0;
+  }
+
+  function resultHTML(p) {
+    const brand = String(p.subtitle || '').replace(/^by\s+/i, '');
+    const category = p.section || p.cat || 'Product';
+    const availability = p.soldOut ? 'Sold Out' : 'In Stock';
+    const oldPrice = p.oldPrice ? `<span class="site-search-old">${fmtPrice(p.oldPrice)}</span>` : '';
+    const image = String(p.image || '').replace(/^(\.\.\/)+/, '');
+    return `
+      <a class="site-search-result" href="${pagePath(p.detail)}" data-search-result>
+        <span class="site-search-media${p.imageFit === 'contain' ? ' is-contain' : ''}">
+          <img src="${imgPath(image)}" alt="" loading="lazy" />
+        </span>
+        <span class="site-search-copy">
+          <span class="site-search-name">${escapeHTML(p.name)}</span>
+          <span class="site-search-meta">${escapeHTML(brand || category)}${brand && category ? ` · ${escapeHTML(category)}` : ''}</span>
+          <span class="site-search-notes">${escapeHTML(p.notes || '')}</span>
+        </span>
+        <span class="site-search-offer">
+          <span class="site-search-price">${oldPrice}<strong>${fmtPrice(p.price)}</strong></span>
+          <span class="site-search-availability${p.soldOut ? ' is-sold-out' : ''}">${availability}</span>
+        </span>
+      </a>`;
+  }
+
+  function render(query) {
+    const normalized = query.trim().toLocaleLowerCase();
+    if (!normalized) {
+      results.innerHTML = '<div class="site-search-prompt"><span>137 products, one quiet search.</span><p>Search a name, house, category, or note to begin.</p></div>';
+      status.textContent = 'Enter a search term';
+      return;
+    }
+    const matches = products
+      .map(p => ({ p, score: score(p, normalized) }))
+      .filter(item => item.score > 0)
+      .sort((a, b) => b.score - a.score || a.p.name.localeCompare(b.p.name))
+      .slice(0, 18)
+      .map(item => item.p);
+    if (!matches.length) {
+      results.innerHTML = `<div class="site-search-empty"><span>No products found</span><p>Try another product, brand, category, or fragrance note.</p></div>`;
+      status.textContent = `No results for ${query.trim()}`;
+      return;
+    }
+    results.innerHTML = matches.map(resultHTML).join('');
+    status.textContent = `${matches.length} result${matches.length === 1 ? '' : 's'} for ${query.trim()}`;
+  }
+
+  function openSearch() {
+    lastFocus = document.activeElement;
+    dialog.classList.add('is-open');
+    dialog.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('search-open');
+    render(input.value);
+    requestAnimationFrame(() => input.focus());
+  }
+
+  function closeSearch() {
+    dialog.classList.remove('is-open');
+    dialog.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('search-open');
+    if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+  }
+
+  toggles.forEach(button => button.addEventListener('click', openSearch));
+  dialog.querySelectorAll('[data-search-close]').forEach(button => button.addEventListener('click', closeSearch));
+  input.addEventListener('input', () => render(input.value));
+  input.addEventListener('keydown', event => {
+    if (event.key === 'Enter') {
+      const firstResult = results.querySelector('[data-search-result]');
+      if (firstResult) {
+        event.preventDefault();
+        firstResult.click();
+      }
+    }
+  });
+  dialog.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeSearch();
+      return;
+    }
+    if (event.key !== 'Tab') return;
+    const focusable = Array.from(dialog.querySelectorAll('button:not([disabled]), input, a[href]'))
+      .filter(element => element.offsetParent !== null);
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+}
+
 function updateCartCount() {
   const count = window.CARTER_STATE.cart.reduce((s, i) => s + i.qty, 0);
   document.querySelectorAll('.cart-count').forEach(el => {
@@ -570,6 +704,7 @@ window.renderCrossBundle = renderCrossBundle;
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {
   initHeader();
+  initSiteSearch();
   bindAddButtons();
   bindFilterChips();
   initReveal();
