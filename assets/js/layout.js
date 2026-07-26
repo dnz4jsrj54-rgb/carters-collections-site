@@ -50,10 +50,10 @@ document.addEventListener('DOMContentLoaded', function () {
   `;
 
   const header = `
-    <a href="${P('sale.html')}" class="cc-annc-bar" aria-label="Shop the sale with code 10OFF">
+    <a href="${P('sale.html')}" class="cc-annc-bar" aria-label="Shop the sale">
       <span class="cc-annc-inner">
         <span class="cc-annc-spark" aria-hidden="true">✦</span>
-        <span class="cc-annc-text"><strong>10% OFF</strong> your first order · code <strong>10OFF</strong> · free U.S. shipping</span>
+        <span class="cc-annc-text"><strong>SHOP THE SALE</strong> · free U.S. shipping</span>
         <span class="cc-annc-cta">Shop the Sale →</span>
       </span>
     </a>
@@ -72,6 +72,12 @@ document.addEventListener('DOMContentLoaded', function () {
           <a href="${P('about.html')}">About</a>
         </nav>
         <div class="header-actions">
+          <button class="icon-btn search-toggle" aria-label="Search products" aria-haspopup="dialog" aria-controls="site-search-dialog">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"/>
+              <path d="m20 20-4-4"/>
+            </svg>
+          </button>
           <button class="icon-btn theme-toggle" aria-label="Toggle light or dark theme">
             <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
@@ -119,6 +125,33 @@ document.addEventListener('DOMContentLoaded', function () {
         <li><a href="${P('about.html')}" data-close>About</a></li>
         <li><a href="${P('cart.html')}" data-close>Cart</a></li>
       </ul>
+    </div>
+
+    <div class="site-search" id="site-search-dialog" role="dialog" aria-modal="true" aria-labelledby="site-search-title" aria-hidden="true">
+      <button class="site-search-backdrop" type="button" data-search-close tabindex="-1" aria-label="Close search"></button>
+      <section class="site-search-panel">
+        <div class="site-search-head">
+          <div>
+            <span class="eyebrow">The full collection</span>
+            <h2 id="site-search-title">Search products</h2>
+          </div>
+          <button class="icon-btn site-search-close" type="button" data-search-close aria-label="Close search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true">
+              <path d="m6 6 12 12M18 6 6 18"/>
+            </svg>
+          </button>
+        </div>
+        <label class="site-search-label" for="site-search-input">Search by product, brand, category, or notes</label>
+        <div class="site-search-input-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"/>
+            <path d="m20 20-4-4"/>
+          </svg>
+          <input id="site-search-input" type="search" autocomplete="off" enterkeyhint="search" placeholder="Try “Lattafa”, “bags”, or “vanilla”" aria-describedby="site-search-status" />
+        </div>
+        <div class="site-search-status" id="site-search-status" role="status" aria-live="polite"></div>
+        <div class="site-search-results" id="site-search-results"></div>
+      </section>
     </div>
   `;
 
@@ -174,7 +207,6 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
         <div class="footer-shipping-note" style="text-align:center; padding:18px 0 0; font-size:0.82rem; line-height:1.6; color:var(--text-muted); border-top:1px solid var(--border); margin-top:24px;">
           <strong style="color:var(--gold); letter-spacing:0.08em; text-transform:uppercase; font-size:0.78rem;">Free U.S. shipping · International free over $299 (or $29 flat)</strong><br/>
-          <span style="display:inline-block; margin-top:6px; color:var(--text);">Use code <strong style="color:var(--gold); letter-spacing:0.06em;">10OFF</strong> for 10% off your order &mdash; valid through June 30, 2026.</span><br/>
           <span style="display:inline-block; margin-top:6px; font-size:0.78rem; color:var(--text-muted);">International orders ship in 7–21 business days and may incur customs duties on delivery (customer's responsibility). Questions? Email <a href="mailto:sales@carterscollections.com" style="color:var(--gold); text-decoration:none;">sales@carterscollections.com</a>.</span>
         </div>
         <div class="footer-bottom">
@@ -197,7 +229,7 @@ document.addEventListener('DOMContentLoaded', function () {
    Exit-Intent Offer Popup — site-wide.
    Shows once per visitor (localStorage). Captures email into the
    Netlify "newsletter" form (feeds welcome-email automation) and
-   surfaces the 10OFF code. Desktop: mouse leaves top of viewport.
+   Desktop: mouse leaves top of viewport.
    Mobile: fast scroll-up after engagement.
    ============================================================ */
 (function () {
@@ -223,20 +255,18 @@ document.addEventListener('DOMContentLoaded', function () {
         + '<div id="cc-exit-card" style="position:relative;width:100%;max-width:420px;background:var(--bg,#fffdf9);color:var(--text,#1a1a1a);border:1px solid var(--gold,#c49e58);border-radius:14px;padding:34px 30px 30px;box-shadow:0 24px 70px rgba(0,0,0,0.45);transform:translateY(14px) scale(.98);transition:transform .28s ease;font-family:var(--font-body,Georgia,serif);text-align:center;">'
         +   '<button id="cc-exit-close" aria-label="Close" style="position:absolute;top:12px;right:14px;background:none;border:none;font-size:1.5rem;line-height:1;color:var(--text-muted,#8a8a8a);cursor:pointer;">&times;</button>'
         +   '<div style="font-family:var(--font-display,Georgia,serif);font-style:italic;font-size:0.82rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold,#c49e58);margin-bottom:10px;">Before you go</div>'
-        +   '<h2 style="font-family:var(--font-display,Georgia,serif);font-size:1.7rem;line-height:1.2;margin:0 0 10px;">Take 10% off your first order</h2>'
-        +   '<p style="font-size:0.92rem;line-height:1.6;color:var(--text-muted,#6a6a6a);margin:0 0 20px;">Designer scents &amp; dresses worth keeping. Drop your email for the code &amp; first dibs on restocks.</p>'
+        +   '<h2 style="font-family:var(--font-display,Georgia,serif);font-size:1.7rem;line-height:1.2;margin:0 0 10px;">Stay close to the collection</h2>'
+        +   '<p style="font-size:0.92rem;line-height:1.6;color:var(--text-muted,#6a6a6a);margin:0 0 20px;">Join the list for new arrivals and seasonal edits.</p>'
         +   '<form id="cc-exit-form" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="display:flex;flex-direction:column;gap:10px;">'
         +     '<input type="hidden" name="form-name" value="newsletter" />'
         +     '<p style="display:none;"><label>Don\u2019t fill this out: <input name="bot-field" /></label></p>'
         +     '<input type="email" name="email" required placeholder="you@email.com" style="padding:13px 14px;border:1px solid var(--border,#d8d2c4);border-radius:8px;font-size:0.95rem;font-family:inherit;background:var(--bg,#fff);color:var(--text,#1a1a1a);" />'
-        +     '<button type="submit" style="padding:13px 14px;border:none;border-radius:8px;background:var(--gold,#c49e58);color:#1a1208;font-weight:600;font-size:0.95rem;letter-spacing:0.03em;cursor:pointer;font-family:inherit;">Send me the code</button>'
+        +     '<button type="submit" style="padding:13px 14px;border:none;border-radius:8px;background:var(--gold,#c49e58);color:#1a1208;font-weight:600;font-size:0.95rem;letter-spacing:0.03em;cursor:pointer;font-family:inherit;">Join the list</button>'
         +   '</form>'
         +   '<div id="cc-exit-success" style="display:none;padding:6px 0 2px;">'
-        +     '<p style="font-size:0.95rem;line-height:1.6;margin:0 0 6px;">You\u2019re in. Use this at checkout:</p>'
-        +     '<div style="display:inline-block;border:1px dashed var(--gold,#c49e58);border-radius:8px;padding:10px 18px;font-size:1.25rem;font-weight:700;letter-spacing:0.12em;color:var(--gold,#c49e58);">10OFF</div>'
-        +     '<p style="font-size:0.78rem;color:var(--text-muted,#8a8a8a);margin:12px 0 0;">10% off + free U.S. shipping \u00b7 ends June 30, 2026</p>'
+        +     '<p style="font-size:0.95rem;line-height:1.6;margin:0 0 6px;">You\u2019re on the list. Welcome to Carter\u2019s Collections.</p>'
         +   '</div>'
-        +   '<button id="cc-exit-decline" style="display:block;margin:16px auto 0;background:none;border:none;font-size:0.78rem;color:var(--text-muted,#9a9a9a);text-decoration:underline;cursor:pointer;font-family:inherit;">No thanks, I\u2019ll pay full price</button>'
+        +   '<button id="cc-exit-decline" style="display:block;margin:16px auto 0;background:none;border:none;font-size:0.78rem;color:var(--text-muted,#9a9a9a);text-decoration:underline;cursor:pointer;font-family:inherit;">No thanks</button>'
         + '</div>';
       return wrap;
     }

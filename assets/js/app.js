@@ -6,15 +6,15 @@
 // Product Catalog (shared across pages)
 // ============================================================
 window.CARTER_CATALOG = {
-  m1: { id: 'm1', name: 'His Confession', subtitle: 'by Lattafa', cat: 'fragrance', section: 'Men\u2019s Fragrance', notes: 'Bergamot · Rose · Oud · Sandalwood', price: 32.99, oldPrice: 40, image: 'assets/real-products/confession_1.jpg', imageFit: 'contain', badge: 'Signature', detail: 'product-confession.html', real: true },
-  m2: { id: 'm2', name: 'Le Male Le Parfum', subtitle: 'by Jean Paul Gaultier', cat: 'fragrance', section: 'Men\u2019s Fragrance', notes: 'Cardamom · Lavender · Vanilla · Tonka', price: 89.99, oldPrice: 152, image: 'assets/real-products/item3_1.jpg', imageFit: 'contain', badge: 'Iconic', detail: 'product-lemale-parfum.html', real: true },
-  m3: { id: 'm3', name: 'Le Male Elixir', subtitle: 'by Jean Paul Gaultier', cat: 'fragrance', section: 'Men\u2019s Fragrance', notes: 'Lavender · Mint · Honey · Tobacco', price: 99.99, oldPrice: 178, image: 'assets/real-products/item4_1.jpg', imageFit: 'contain', badge: 'Bestseller', detail: 'product-lemale-elixir.html', real: true },
+  m1: { id: 'm1', name: 'His Confession', subtitle: 'by Lattafa', cat: 'fragrance', section: 'Men\u2019s Fragrance', notes: 'Bergamot · Rose · Oud · Sandalwood', price: 32.99, oldPrice: 49.99, image: 'assets/real-products/confession_1.jpg', imageFit: 'contain', badge: 'Signature', detail: 'product-confession.html', real: true, soldOut: true },
+  m2: { id: 'm2', name: 'Le Male Le Parfum', subtitle: 'by Jean Paul Gaultier', cat: 'fragrance', section: 'Men\u2019s Fragrance', notes: 'Cardamom · Lavender · Vanilla · Tonka', price: 129.99, oldPrice: 160, image: 'assets/real-products/item3_1.jpg', imageFit: 'contain', badge: 'Iconic', detail: 'product-lemale-parfum.html', real: true },
+  m3: { id: 'm3', name: 'Le Male Elixir', subtitle: 'by Jean Paul Gaultier', cat: 'fragrance', section: 'Men\u2019s Fragrance', notes: 'Lavender · Mint · Honey · Tobacco', price: 139.99, oldPrice: 178, image: 'assets/real-products/item4_1.jpg', imageFit: 'contain', badge: 'Bestseller', detail: 'product-lemale-elixir.html', real: true },
   m4: { id: 'm4', name: 'Sauvage Elixir', subtitle: 'by Dior', cat: 'fragrance', section: 'Men\u2019s Fragrance', notes: 'Cinnamon · Nutmeg · Licorice · Sandalwood', price: 169.99, oldPrice: 199, image: 'assets/real-products/sauvage_elixir_1.jpg', imageFit: 'contain', badge: 'Iconic', detail: 'product-sauvage-elixir.html', real: true },
   m5: { id: 'm5', name: 'Eros', subtitle: 'by Versace', cat: 'fragrance', section: 'Men\u2019s Fragrance', notes: 'Mint · Green Apple · Tonka · Vanilla', price: 64.99, oldPrice: 120, image: 'assets/real-products/eros_1.jpg', imageFit: 'contain', badge: 'Bestseller', detail: 'product-eros.html', real: true },
-  m6: { id: 'm6', name: 'Stronger With You Intensely', subtitle: 'by Armani', cat: 'fragrance', section: 'Men\u2019s Fragrance', notes: 'Pink Pepper · Lavender · Honey · Vanilla', price: 89.99, oldPrice: 130, image: 'assets/real-products/stronger_1.jpg', imageFit: 'contain', badge: 'Signature', detail: 'product-stronger.html', real: true },
+  m6: { id: 'm6', name: 'Stronger With You Intensely', subtitle: 'by Armani', cat: 'fragrance', section: 'Men\u2019s Fragrance', notes: 'Pink Pepper · Lavender · Honey · Vanilla', price: 124.99, oldPrice: 130, image: 'assets/real-products/stronger_1.jpg', imageFit: 'contain', badge: 'Signature', detail: 'product-stronger.html', real: true },
   m7: { id: 'm7', name: 'Asad', subtitle: 'by Lattafa', cat: 'fragrance', section: 'Men\u2019s Fragrance', notes: 'Pineapple · Bergamot · Amber · Patchouli', price: 42.99, oldPrice: 60, image: 'assets/real-products/asad_1.jpg', imageFit: 'contain', badge: 'Niche Pick', detail: 'product-asad.html', real: true },
   m8: { id: 'm8', name: '9PM', subtitle: 'by Afnan', cat: 'fragrance', section: 'Men\u2019s Fragrance', notes: 'Apple · Cinnamon · Vanilla · Sandalwood', price: 44.99, oldPrice: 65, image: 'assets/real-products/ninepm_1.jpg', imageFit: 'contain', badge: 'TikTok Viral', detail: 'product-9pm.html', real: true },
-  w1: { id: 'w1', name: 'Yara Moi', subtitle: 'by Lattafa', cat: 'fragrance', section: 'Women\u2019s Fragrance', notes: 'Peach · Jasmine · Caramel · Sandalwood', price: 24.99, oldPrice: 40, image: 'assets/real-products/yara_2.jpg', imageFit: 'contain', badge: 'Bestseller', detail: 'product-yara.html', real: true },
+  w1: { id: 'w1', name: 'Yara Moi', subtitle: 'by Lattafa', cat: 'fragrance', section: 'Women\u2019s Fragrance', notes: 'Peach · Jasmine · Caramel · Sandalwood', price: 24.99, oldPrice: 39, image: 'assets/real-products/yara_2.jpg', imageFit: 'contain', badge: 'Bestseller', detail: 'product-yara.html', real: true, soldOut: true },
   w2: { id: 'w2', name: 'Bright Crystal', subtitle: 'by Versace', cat: 'fragrance', section: 'Women\u2019s Fragrance', notes: 'Yuzu · Peony · Magnolia · Musk', price: 84.99, oldPrice: 128, image: 'assets/real-products/bright_crystal_1.jpg', imageFit: 'contain', badge: 'Iconic', detail: 'product-bright-crystal.html', real: true },
   w3: { id: 'w3', name: 'Libre', subtitle: 'by Yves Saint Laurent', cat: 'fragrance', section: 'Women\u2019s Fragrance', notes: 'Lavender · Orange Blossom · Vanilla · Musk', price: 119.99, oldPrice: 180, image: 'assets/real-products/libre_1.jpg', imageFit: 'contain', badge: 'Bestseller', detail: 'product-libre.html', real: true },
   w4: { id: 'w4', name: 'Replica On A Date', subtitle: 'by Maison Margiela', cat: 'fragrance', section: 'Women\u2019s Fragrance', notes: 'Pink Pepper · Rose · Wine · Patchouli', price: 144.99, oldPrice: 170, image: 'assets/real-products/onadate_1.jpg', imageFit: 'contain', badge: 'Niche', detail: 'product-on-a-date.html', real: true },
@@ -45,13 +45,13 @@ window.CARTER_CATALOG = {
   m16: { id: 'm16', name: "Hawas", subtitle: 'by Rasasi', cat: 'fragrance', section: 'Men\u2019s Fragrance', notes: 'Bergamot · Violet Leaf · Cardamom · Citrus', price: 54.99, oldPrice: 80, image: 'assets/real-products/m16_1.jpg', imageFit: 'contain', badge: 'Cult Favorite', detail: 'product-rasasi-hawas.html', real: true },
   m17: { id: 'm17', name: "Club De Nuit Intense", subtitle: 'by Armaf', cat: 'fragrance', section: 'Men\u2019s Fragrance', notes: 'Lemon · Blackcurrant · Apple · Jasmine', price: 37.99, oldPrice: 75, image: 'assets/real-products/m17_1.jpg', imageFit: 'contain', badge: 'TikTok Viral', detail: 'product-armaf-cdni.html', real: true },
   m18: { id: 'm18', name: "Phantom", subtitle: 'by Paco Rabanne', cat: 'fragrance', section: 'Men\u2019s Fragrance', notes: 'Lavender · Lemon Zest · Amalfi Lemon · Apple', price: 84.99, oldPrice: 130, image: 'assets/real-products/m18_1.jpg', imageFit: 'contain', badge: 'TikTok Viral', detail: 'product-paco-phantom.html', real: true },
-  w9: { id: 'w9', name: "Sì Intense", subtitle: 'by Giorgio Armani', cat: 'fragrance', section: 'Women\u2019s Fragrance', notes: 'Rose · Bergamot · Blackcurrant · Freesia', price: 99.99, oldPrice: 174, image: 'assets/real-products/w9_1.jpg', imageFit: 'contain', badge: 'Bestseller', detail: 'product-armani-si-intense.html', real: true },
-  w10: { id: 'w10', name: "Good Girl", subtitle: 'by Carolina Herrera', cat: 'fragrance', section: 'Women\u2019s Fragrance', notes: 'Jasmine Sambac · Coffee · Almond · Bergamot', price: 119.99, oldPrice: 148, image: 'assets/real-products/w10_1.jpg', imageFit: 'contain', badge: 'Iconic', detail: 'product-good-girl.html', real: true },
+  w9: { id: 'w9', name: "Sì Intense", subtitle: 'by Giorgio Armani', cat: 'fragrance', section: 'Women\u2019s Fragrance', notes: 'Rose · Bergamot · Blackcurrant · Freesia', price: 144.99, oldPrice: 174, image: 'assets/real-products/w9_1.jpg', imageFit: 'contain', badge: 'Bestseller', detail: 'product-armani-si-intense.html', real: true },
+  w10: { id: 'w10', name: "Good Girl", subtitle: 'by Carolina Herrera', cat: 'fragrance', section: 'Women\u2019s Fragrance', notes: 'Jasmine Sambac · Coffee · Almond · Bergamot', price: 134.99, oldPrice: 164, image: 'assets/real-products/w10_1.jpg', imageFit: 'contain', badge: 'Iconic', detail: 'product-good-girl.html', real: true },
   w11: { id: 'w11', name: "La Vie Est Belle L'Elixir", subtitle: 'by Lancôme', cat: 'fragrance', section: 'Women\u2019s Fragrance', notes: 'Blackcurrant · Iris · Patchouli · Orange Blossom', price: 134.99, oldPrice: 210, image: 'assets/real-products/w11_1.jpg', imageFit: 'contain', badge: 'Bestseller', detail: 'product-lavb-elixir.html', real: true },
   w12: { id: 'w12', name: "Miss Dior", subtitle: 'by Dior', cat: 'fragrance', section: 'Women\u2019s Fragrance', notes: 'Rose · Peony · Lily of the Valley · Jasmine', price: 194.99, oldPrice: 225, image: 'assets/real-products/w12_1.jpg', imageFit: 'contain', badge: 'Iconic', detail: 'product-miss-dior.html', real: true },
-  w13: { id: 'w13', name: "Flowerbomb", subtitle: 'by Viktor & Rolf', cat: 'fragrance', section: 'Women\u2019s Fragrance', notes: 'Bergamot · Tea · Jasmine · Freesia', price: 99.99, oldPrice: 182, image: 'assets/real-products/w13_1.jpg', imageFit: 'contain', badge: 'Cult Favorite', detail: 'product-flowerbomb.html', real: true },
+  w13: { id: 'w13', name: "Flowerbomb", subtitle: 'by Viktor & Rolf', cat: 'fragrance', section: 'Women\u2019s Fragrance', notes: 'Bergamot · Tea · Jasmine · Freesia', price: 114.99, oldPrice: 182, image: 'assets/real-products/w13_1.jpg', imageFit: 'contain', badge: 'Cult Favorite', detail: 'product-flowerbomb.html', real: true },
   w14: { id: 'w14', name: "Delina Exclusif", subtitle: 'by Parfums de Marly', cat: 'fragrance', section: 'Women\u2019s Fragrance', notes: 'Turkish Rose · Lychee · Rhubarb · Peony', price: 434.99, oldPrice: 555, image: 'assets/real-products/w14_1.jpg', imageFit: 'contain', badge: 'Niche Pick', detail: 'product-pdm-delina-exclusif.html', real: true },
-  w15: { id: 'w15', name: "Yara", subtitle: 'by Lattafa', cat: 'fragrance', section: 'Women\u2019s Fragrance', notes: 'Bergamot · Lemon · Violet · Raspberry', price: 32.99, oldPrice: 55, image: 'assets/real-products/w15_1.jpg', imageFit: 'contain', badge: 'TikTok Viral', detail: 'product-lattafa-yara.html', real: true },
+  w15: { id: 'w15', name: "Yara", subtitle: 'by Lattafa', cat: 'fragrance', section: 'Women\u2019s Fragrance', notes: 'Bergamot · Lemon · Violet · Raspberry', price: 32.99, oldPrice: 39, image: 'assets/real-products/w15_1.jpg', imageFit: 'contain', badge: 'TikTok Viral', detail: 'product-lattafa-yara.html', real: true, soldOut: true },
   w16: { id: 'w16', name: "Black Opium", subtitle: 'by Yves Saint Laurent', cat: 'fragrance', section: 'Women\u2019s Fragrance', notes: 'Coffee · Pink Pepper · Orange Blossom · Jasmine', price: 134.99, oldPrice: 172, image: 'assets/real-products/w16_1.jpg', imageFit: 'contain', badge: 'Bestseller', detail: 'product-ysl-black-opium.html', real: true },
   w17: { id: 'w17', name: "Her", subtitle: 'by Burberry', cat: 'fragrance', section: 'Women\u2019s Fragrance', notes: 'Raspberry · Cherry · Strawberry · Blackberry', price: 119.99, oldPrice: 181, image: 'assets/real-products/w17_1.jpg', imageFit: 'contain', badge: 'TikTok Viral', detail: 'product-burberry-her.html', real: true },
   w18: { id: 'w18', name: "Baroque Rouge 540", subtitle: 'by Maison Alhambra', cat: 'fragrance', section: 'Women\u2019s Fragrance', notes: 'Jasmine · Egyptian Grandiflorum · Saffron · Cedar', price: 27.99, oldPrice: 65, image: 'assets/real-products/w18_1.jpg', imageFit: 'contain', badge: 'TikTok Viral', detail: 'product-alhambra-br540.html', real: true },
@@ -219,6 +219,140 @@ function initHeader() {
   updateCartCount();
 }
 
+// ============================================================
+// Site-wide catalog search
+// ============================================================
+function initSiteSearch() {
+  const dialog = document.getElementById('site-search-dialog');
+  const input = document.getElementById('site-search-input');
+  const results = document.getElementById('site-search-results');
+  const status = document.getElementById('site-search-status');
+  const toggles = document.querySelectorAll('.search-toggle');
+  if (!dialog || !input || !results || !status || !toggles.length) return;
+
+  const products = Object.values(window.CARTER_CATALOG || {}).filter(p => p && p.detail);
+  let lastFocus = null;
+
+  function escapeHTML(value) {
+    return String(value || '').replace(/[&<>"']/g, char => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[char]);
+  }
+
+  function searchText(p) {
+    return [p.name, p.subtitle, p.cat, p.section, p.notes, p.badge]
+      .filter(Boolean).join(' ').toLocaleLowerCase();
+  }
+
+  function score(p, query) {
+    const name = String(p.name || '').toLocaleLowerCase();
+    const brand = String(p.subtitle || '').replace(/^by\s+/i, '').toLocaleLowerCase();
+    const category = `${p.cat || ''} ${p.section || ''}`.toLocaleLowerCase();
+    if (name === query) return 100;
+    if (name.startsWith(query)) return 80;
+    if (brand.startsWith(query)) return 70;
+    if (name.includes(query)) return 60;
+    if (brand.includes(query)) return 50;
+    if (category.includes(query)) return 40;
+    if (searchText(p).includes(query)) return 20;
+    return 0;
+  }
+
+  function resultHTML(p) {
+    const brand = String(p.subtitle || '').replace(/^by\s+/i, '');
+    const category = p.section || p.cat || 'Product';
+    const availability = p.soldOut ? 'Sold Out' : 'In Stock';
+    const oldPrice = p.oldPrice ? `<span class="site-search-old">${fmtPrice(p.oldPrice)}</span>` : '';
+    const image = String(p.image || '').replace(/^(\.\.\/)+/, '');
+    return `
+      <a class="site-search-result" href="${pagePath(p.detail)}" data-search-result>
+        <span class="site-search-media${p.imageFit === 'contain' ? ' is-contain' : ''}">
+          <img src="${imgPath(image)}" alt="" loading="lazy" />
+        </span>
+        <span class="site-search-copy">
+          <span class="site-search-name">${escapeHTML(p.name)}</span>
+          <span class="site-search-meta">${escapeHTML(brand || category)}${brand && category ? ` · ${escapeHTML(category)}` : ''}</span>
+          <span class="site-search-notes">${escapeHTML(p.notes || '')}</span>
+        </span>
+        <span class="site-search-offer">
+          <span class="site-search-price">${oldPrice}<strong>${fmtPrice(p.price)}</strong></span>
+          <span class="site-search-availability${p.soldOut ? ' is-sold-out' : ''}">${availability}</span>
+        </span>
+      </a>`;
+  }
+
+  function render(query) {
+    const normalized = query.trim().toLocaleLowerCase();
+    if (!normalized) {
+      results.innerHTML = '<div class="site-search-prompt"><span>137 products, one quiet search.</span><p>Search a name, house, category, or note to begin.</p></div>';
+      status.textContent = 'Enter a search term';
+      return;
+    }
+    const matches = products
+      .map(p => ({ p, score: score(p, normalized) }))
+      .filter(item => item.score > 0)
+      .sort((a, b) => b.score - a.score || a.p.name.localeCompare(b.p.name))
+      .slice(0, 18)
+      .map(item => item.p);
+    if (!matches.length) {
+      results.innerHTML = `<div class="site-search-empty"><span>No products found</span><p>Try another product, brand, category, or fragrance note.</p></div>`;
+      status.textContent = `No results for ${query.trim()}`;
+      return;
+    }
+    results.innerHTML = matches.map(resultHTML).join('');
+    status.textContent = `${matches.length} result${matches.length === 1 ? '' : 's'} for ${query.trim()}`;
+  }
+
+  function openSearch() {
+    lastFocus = document.activeElement;
+    dialog.classList.add('is-open');
+    dialog.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('search-open');
+    render(input.value);
+    requestAnimationFrame(() => input.focus());
+  }
+
+  function closeSearch() {
+    dialog.classList.remove('is-open');
+    dialog.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('search-open');
+    if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+  }
+
+  toggles.forEach(button => button.addEventListener('click', openSearch));
+  dialog.querySelectorAll('[data-search-close]').forEach(button => button.addEventListener('click', closeSearch));
+  input.addEventListener('input', () => render(input.value));
+  input.addEventListener('keydown', event => {
+    if (event.key === 'Enter') {
+      const firstResult = results.querySelector('[data-search-result]');
+      if (firstResult) {
+        event.preventDefault();
+        firstResult.click();
+      }
+    }
+  });
+  dialog.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeSearch();
+      return;
+    }
+    if (event.key !== 'Tab') return;
+    const focusable = Array.from(dialog.querySelectorAll('button:not([disabled]), input, a[href]'))
+      .filter(element => element.offsetParent !== null);
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+}
+
 function updateCartCount() {
   const count = window.CARTER_STATE.cart.reduce((s, i) => s + i.qty, 0);
   document.querySelectorAll('.cart-count').forEach(el => {
@@ -232,6 +366,11 @@ function updateCartCount() {
 // ============================================================
 function addToCart(productId, qty, size, color) {
   qty = qty || 1;
+  const product = (window.CARTER_CATALOG || {})[productId];
+  if (product && product.soldOut) {
+    showToast('Sold out');
+    return;
+  }
   const existing = window.CARTER_STATE.cart.find(i => i.id === productId && i.size === (size || null) && i.color === (color || null));
   if (existing) existing.qty += qty;
   else window.CARTER_STATE.cart.push({ id: productId, qty, size: size || null, color: color || null });
@@ -353,7 +492,9 @@ function productCardHTML(p, opts) {
         <div class="product-card-notes">${p.notes}</div>
         <div class="product-card-foot">
           ${priceBlock}
-          <button class="add-to-cart-btn" data-add="${p.id}">Add</button>
+          ${p.soldOut
+            ? `<button class="add-to-cart-btn" disabled aria-disabled="true">Sold Out</button>`
+            : `<button class="add-to-cart-btn" data-add="${p.id}">Add</button>`}
         </div>
       </div>
     </article>
@@ -563,6 +704,7 @@ window.renderCrossBundle = renderCrossBundle;
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {
   initHeader();
+  initSiteSearch();
   bindAddButtons();
   bindFilterChips();
   initReveal();

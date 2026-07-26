@@ -217,9 +217,8 @@
                   (prizeKey === "d15" ? " \u00b7 min. order $29.99" : "");
               }
             } else {
-              // Backend hiccup: still honor the win with the standing code.
-              document.getElementById("cc-spin-code").textContent = "10OFF";
-              document.getElementById("cc-spin-exp").textContent = "10% off + free U.S. shipping \u00b7 ends June 30, 2026";
+              document.getElementById("cc-spin-code").textContent = "Unavailable";
+              document.getElementById("cc-spin-exp").textContent = "Please try again later";
             }
             localStorage.setItem(SEEN_KEY, "1");
             localStorage.setItem(EXIT_KEY, "1");
