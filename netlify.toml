@@ -37,6 +37,85 @@
   status = 200
   force = true
 
+# Canonical public URLs: homepage uses /; all other HTML pages retain .html.
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/bags"
+  to = "/pages/bags.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/bags/"
+  to = "/pages/bags.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/clothing"
+  to = "/pages/clothing.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/clothing/"
+  to = "/pages/clothing.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/fragrances-men"
+  to = "/pages/fragrances-men.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/fragrances-men/"
+  to = "/pages/fragrances-men.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/fragrances-women"
+  to = "/pages/fragrances-women.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/fragrances-women/"
+  to = "/pages/fragrances-women.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/sale"
+  to = "/pages/sale.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/sale/"
+  to = "/pages/sale.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/sunglasses"
+  to = "/pages/sunglasses.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/sunglasses/"
+  to = "/pages/sunglasses.html"
+  status = 301
+  force = true
+
 # Canonical host: redirect netlify.app to apex domain
 [[redirects]]
   from = "https://mellow-frangollo-645303.netlify.app/*"

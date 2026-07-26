@@ -1,10 +1,10 @@
 User-agent: *
 Allow: /
 
-# Disallow utility pages that shouldn't appear in search
+# Public products and category pages remain crawlable.
 Disallow: /pages/cart.html
 Disallow: /pages/checkout-success.html
 Disallow: /api/
-Disallow: /.netlify/
+Disallow: /.netlify/functions/
 
 Sitemap: https://carterscollections.com/sitemap.xml
