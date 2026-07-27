@@ -100,6 +100,138 @@
   force = true
 
 [[redirects]]
+  from = "/pages/fragrances-under-100"
+  to = "/pages/fragrances-under-100.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/fragrances-under-100/"
+  to = "/pages/fragrances-under-100.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/product-montblanc-explorer-platinum"
+  to = "/pages/product-montblanc-explorer-platinum.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/product-montblanc-explorer-platinum/"
+  to = "/pages/product-montblanc-explorer-platinum.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/product-dolce-gabbana-k-edt"
+  to = "/pages/product-dolce-gabbana-k-edt.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/product-dolce-gabbana-k-edt/"
+  to = "/pages/product-dolce-gabbana-k-edt.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/product-ferragamo-spicy-leather"
+  to = "/pages/product-ferragamo-spicy-leather.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/product-ferragamo-spicy-leather/"
+  to = "/pages/product-ferragamo-spicy-leather.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/product-marc-jacobs-honey"
+  to = "/pages/product-marc-jacobs-honey.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/product-marc-jacobs-honey/"
+  to = "/pages/product-marc-jacobs-honey.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/product-mugler-angel-fantasm"
+  to = "/pages/product-mugler-angel-fantasm.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/product-mugler-angel-fantasm/"
+  to = "/pages/product-mugler-angel-fantasm.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/product-calvin-klein-one-gold"
+  to = "/pages/product-calvin-klein-one-gold.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/product-calvin-klein-one-gold/"
+  to = "/pages/product-calvin-klein-one-gold.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/product-dolce-gabbana-devotion"
+  to = "/pages/product-dolce-gabbana-devotion.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/product-dolce-gabbana-devotion/"
+  to = "/pages/product-dolce-gabbana-devotion.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/product-versace-dylan-blue-pour-femme"
+  to = "/pages/product-versace-dylan-blue-pour-femme.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/product-versace-dylan-blue-pour-femme/"
+  to = "/pages/product-versace-dylan-blue-pour-femme.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/product-juliette-has-a-gun-not-a-perfume"
+  to = "/pages/product-juliette-has-a-gun-not-a-perfume.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/product-juliette-has-a-gun-not-a-perfume/"
+  to = "/pages/product-juliette-has-a-gun-not-a-perfume.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/product-versace-crystal-noir-edt"
+  to = "/pages/product-versace-crystal-noir-edt.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/product-versace-crystal-noir-edt/"
+  to = "/pages/product-versace-crystal-noir-edt.html"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/pages/sale"
   to = "/pages/sale.html"
   status = 301
