@@ -64,6 +64,16 @@ window.CARTER_CATALOG = {
   w21: { id: 'w21', name: "Vanilla 28", subtitle: 'by Kayali', cat: 'fragrance', section: 'Women\u2019s Fragrance', notes: "Vanilla Orchid · Brown Sugar · Tonka · Amber", price: 299.99, oldPrice: 399, image: 'assets/real-products/w21_1.jpg', imageFit: 'contain', badge: 'TikTok Viral', detail: 'product-kayali-vanilla-28.html', real: true },
   w22: { id: 'w22', name: "By the Fireplace", subtitle: 'by Maison Margiela', cat: 'fragrance', section: 'Women\u2019s Fragrance', notes: "Chestnut · Clove · Guaiac Wood · Vanilla", price: 234.99, oldPrice: 305, image: 'assets/real-products/w22_1.jpg', imageFit: 'contain', badge: 'TikTok Viral', detail: 'product-margiela-by-the-fireplace.html', real: true },
   w23: { id: 'w23', name: "Sparkle", subtitle: 'by Kate Spade New York', cat: 'fragrance', section: 'Women\u2019s Fragrance', notes: "Blackcurrant · Pink Pepper · Peony · Crème Brûlée", price: 89.99, oldPrice: 115, image: 'assets/real-products/kate_spade_sparkle_1.jpg', imageFit: 'contain', badge: 'New Arrival', detail: 'product-kate-spade-sparkle.html', real: true },
+  m23: { id: 'm23', name: "Explorer Platinum", subtitle: 'by Montblanc', cat: 'fragrance', section: 'Men\u2019s Fragrance', notes: "Violet Leaf · Clary Sage · Cedarwood", price: 77.99, oldPrice: 136, image: 'assets/real-products/m23_1.jpg', imageFit: 'contain', badge: 'New Arrival', detail: 'product-montblanc-explorer-platinum.html', real: true, specialOrder: true },
+  m24: { id: 'm24', name: "K Eau de Toilette", subtitle: 'by Dolce & Gabbana', cat: 'fragrance', section: 'Men\u2019s Fragrance', notes: "Blood Orange · Clary Sage · Cedar · Vetiver", price: 84.99, oldPrice: 125, image: 'assets/real-products/m24_1.jpg', imageFit: 'contain', badge: 'New Arrival', detail: 'product-dolce-gabbana-k-edt.html', real: true, specialOrder: true },
+  m25: { id: 'm25', name: "Spicy Leather", subtitle: 'by Ferragamo', cat: 'fragrance', section: 'Men\u2019s Fragrance', notes: "Saffron · Black Pepper · Cedar · Leather", price: 82.99, image: 'assets/real-products/m25_1.jpg', imageFit: 'contain', badge: 'New Arrival', detail: 'product-ferragamo-spicy-leather.html', real: true, specialOrder: true },
+  w24: { id: 'w24', name: "Honey", subtitle: 'by Marc Jacobs', cat: 'fragrance', section: 'Women\u2019s Fragrance', notes: "Green Pear · Honeysuckle · Honey · Vanilla", price: 73.99, image: 'assets/real-products/w24_1.jpg', imageFit: 'contain', badge: 'New Arrival', detail: 'product-marc-jacobs-honey.html', real: true, specialOrder: true },
+  w25: { id: 'w25', name: "Angel Fantasm", subtitle: 'by Mugler', cat: 'fragrance', section: 'Women\u2019s Fragrance', notes: "Pineapple · Coconut · Tiaré · Vanilla", price: 118.99, oldPrice: 190, image: 'assets/real-products/w25_1.jpg', imageFit: 'contain', badge: 'New Arrival', detail: 'product-mugler-angel-fantasm.html', real: true, specialOrder: true },
+  w26: { id: 'w26', name: "CK One Gold", subtitle: 'by Calvin Klein', cat: 'fragrance', section: 'Women\u2019s Fragrance', notes: "Fig · Bergamot · Neroli · Vetiver", price: 67.99, image: 'assets/real-products/w26_1.jpg', imageFit: 'contain', badge: 'New Arrival', detail: 'product-calvin-klein-one-gold.html', real: true, specialOrder: true },
+  w27: { id: 'w27', name: "Devotion", subtitle: 'by Dolce & Gabbana', cat: 'fragrance', section: 'Women\u2019s Fragrance', notes: "Candied Citrus · Orange Blossom · Vanilla", price: 119.99, oldPrice: 179, image: 'assets/real-products/w27_1.jpg', imageFit: 'contain', badge: 'New Arrival', detail: 'product-dolce-gabbana-devotion.html', real: true, specialOrder: true },
+  w28: { id: 'w28', name: "Dylan Blue Pour Femme", subtitle: 'by Versace', cat: 'fragrance', section: 'Women\u2019s Fragrance', notes: "Blackcurrant · Apple · Rose · White Woods", price: 91.99, oldPrice: 148, image: 'assets/real-products/w28_1.jpg', imageFit: 'contain', badge: 'New Arrival', detail: 'product-versace-dylan-blue-pour-femme.html', real: true, specialOrder: true },
+  w29: { id: 'w29', name: "Not a Perfume", subtitle: 'by Juliette Has a Gun', cat: 'fragrance', section: 'Women\u2019s Fragrance', notes: "Cetalox · Clean Musk · Amber · Woods", price: 117.99, image: 'assets/real-products/w29_1.jpg', imageFit: 'contain', badge: 'New Arrival', detail: 'product-juliette-has-a-gun-not-a-perfume.html', real: true, specialOrder: true },
+  w30: { id: 'w30', name: "Crystal Noir Eau de Toilette", subtitle: 'by Versace', cat: 'fragrance', section: 'Women\u2019s Fragrance', notes: "Cardamom · Gardenia · Amber · Sandalwood", price: 94.99, oldPrice: 128, image: 'assets/real-products/w30_1.jpg', imageFit: 'contain', badge: 'New Arrival', detail: 'product-versace-crystal-noir-edt.html', real: true, specialOrder: true },
   // ============================================================
   // Bags & Leather Goods — sourced authentic, priced below retail
   // ============================================================
@@ -284,7 +294,7 @@ function initSiteSearch() {
   function render(query) {
     const normalized = query.trim().toLocaleLowerCase();
     if (!normalized) {
-      results.innerHTML = '<div class="site-search-prompt"><span>137 products, one quiet search.</span><p>Search a name, house, category, or note to begin.</p></div>';
+      results.innerHTML = `<div class="site-search-prompt"><span>${products.length} products, one quiet search.</span><p>Search a name, house, category, or note to begin.</p></div>`;
       status.textContent = 'Enter a search term';
       return;
     }
@@ -309,7 +319,7 @@ function initSiteSearch() {
     dialog.setAttribute('aria-hidden', 'false');
     document.body.classList.add('search-open');
     render(input.value);
-    requestAnimationFrame(() => input.focus());
+    setTimeout(() => input.focus({ preventScroll: true }), 0);
   }
 
   function closeSearch() {
