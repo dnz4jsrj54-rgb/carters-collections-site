@@ -240,6 +240,10 @@ document.addEventListener('DOMContentLoaded', function () {
               <a href="https://www.pinterest.com/1dhk4ykvcwtywxu6ix8q2z8myzpta0/" target="_blank" rel="noopener noreferrer" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M11 21c.7-2 .8-3 1-5l1-5"/><path d="M9 9c.5-2 2-3 4-3 2.5 0 4 1.6 4 4 0 3-2 5-4 5-1.6 0-2.5-1-2-2"/></svg></a>
               <a href="https://www.tiktok.com/@cart3rscoll3ctions" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M15 3v10.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M15 3c.5 2.5 2.5 4.5 5 5"/></svg></a>
             </div>
+            <p style="margin-top:14px; font-size:0.82rem; line-height:1.6;">
+              Call or text<br/>
+              <a href="tel:+15126387534" style="color:var(--gold); text-decoration:none;">(512) 638-7534</a>
+            </p>
           </div>
         </div>
         <div class="footer-shipping-note" style="text-align:center; padding:18px 0 0; font-size:0.82rem; line-height:1.6; color:var(--text-muted); border-top:1px solid var(--border); margin-top:24px;">
