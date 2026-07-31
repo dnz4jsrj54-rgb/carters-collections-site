@@ -3,10 +3,14 @@
 // server-side data (order total, hashed customer email for enhanced match).
 //
 // GET /api/get-session?session_id=cs_test_...
-// Returns: { ok, order_id, amount_total, currency, email_sha256, item_count }
+// Returns verified purchase analytics plus the Google Customer Reviews opt-in
+// fields required on the order-confirmation page.
 
 const Stripe = require("stripe");
 const crypto = require("crypto");
+const {
+  customerReviewOptIn,
+} = require("./lib/google-customer-reviews");
 
 exports.handler = async (event) => {
   if (event.httpMethod === "OPTIONS") {
@@ -26,9 +30,7 @@ exports.handler = async (event) => {
   }
 
   try {
-    const session = await stripe.checkout.sessions.retrieve(sessionId, {
-      expand: ["customer_details"],
-    });
+    const session = await stripe.checkout.sessions.retrieve(sessionId);
 
     // Only return data if the session has actually completed payment.
     if (session.payment_status !== "paid") {
@@ -48,6 +50,7 @@ exports.handler = async (event) => {
       currency: (session.currency || "usd").toUpperCase(),
       item_count: Number((session.metadata || {}).item_count || 1),
       email_sha256: emailSha256,
+      customer_review_opt_in: customerReviewOptIn(session),
     });
   } catch (err) {
     return json(500, { error: err.message });
@@ -56,7 +59,6 @@ exports.handler = async (event) => {
 
 function corsHeaders() {
   return {
-    "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
   };
@@ -64,7 +66,13 @@ function corsHeaders() {
 function json(statusCode, body) {
   return {
     statusCode,
-    headers: { "Content-Type": "application/json", ...corsHeaders() },
+    headers: {
+      "Content-Type": "application/json",
+      "Cache-Control": "no-store, private",
+      "Referrer-Policy": "no-referrer",
+      "X-Content-Type-Options": "nosniff",
+      ...corsHeaders(),
+    },
     body: JSON.stringify(body),
   };
 }
