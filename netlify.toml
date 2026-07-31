@@ -2,6 +2,7 @@
 # Static site + serverless functions for Stripe Checkout
 
 [build]
+  command = "node scripts/generate-google-merchant-feed.mjs"
   publish = "."
   functions = "netlify/functions"
 
@@ -271,6 +272,12 @@
   [headers.values]
     Content-Type = "application/xml; charset=utf-8"
     Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/google-merchant-feed.xml"
+  [headers.values]
+    Content-Type = "application/rss+xml; charset=utf-8"
+    Cache-Control = "public, max-age=3600"
 
 [[headers]]
   for = "/robots.txt"
