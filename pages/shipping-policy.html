@@ -20,6 +20,67 @@
   <meta property="og:url" content="https://carterscollections.com/pages/shipping-policy.html" />
   <meta property="og:site_name" content="Carter's Collections" />
   <meta property="og:locale" content="en_US" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "OnlineStore",
+    "@id": "https://carterscollections.com/#store",
+    "name": "Carter's Collections",
+    "url": "https://carterscollections.com/",
+    "hasShippingService": {
+      "@type": "ShippingService",
+      "@id": "https://carterscollections.com/pages/shipping-policy.html#us-standard-shipping",
+      "name": "Free U.S. standard shipping",
+      "description": "Free standard shipping on every U.S. order, with delivery typically in 3 to 5 business days.",
+      "fulfillmentType": "https://schema.org/FulfillmentTypeDelivery",
+      "handlingTime": {
+        "@type": "ServicePeriod",
+        "businessDays": [
+          "https://schema.org/Monday",
+          "https://schema.org/Tuesday",
+          "https://schema.org/Wednesday",
+          "https://schema.org/Thursday",
+          "https://schema.org/Friday"
+        ],
+        "cutoffTime": "12:00:00-05:00",
+        "duration": {
+          "@type": "QuantitativeValue",
+          "minValue": 0,
+          "maxValue": 1,
+          "unitCode": "DAY"
+        }
+      },
+      "shippingConditions": {
+        "@type": "ShippingConditions",
+        "shippingDestination": {
+          "@type": "DefinedRegion",
+          "addressCountry": "US"
+        },
+        "shippingRate": {
+          "@type": "MonetaryAmount",
+          "value": 0,
+          "currency": "USD"
+        },
+        "transitTime": {
+          "@type": "ServicePeriod",
+          "businessDays": [
+            "https://schema.org/Monday",
+            "https://schema.org/Tuesday",
+            "https://schema.org/Wednesday",
+            "https://schema.org/Thursday",
+            "https://schema.org/Friday"
+          ],
+          "duration": {
+            "@type": "QuantitativeValue",
+            "minValue": 3,
+            "maxValue": 4,
+            "unitCode": "DAY"
+          }
+        }
+      }
+    }
+  }
+  </script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-YWY8CMZ40F"></script>
   <script>
