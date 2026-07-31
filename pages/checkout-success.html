@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Order Confirmed — Carter's Collections</title>
   <meta name="description" content="Thank you for your order at Carter's Collections." />
+  <meta name="referrer" content="origin" />
   <meta property="og:title" content="Order Confirmed — Carter's Collections" />
   <meta property="og:image" content="../assets/images/hero.jpg" />
   <meta name="robots" content="noindex" />
@@ -105,25 +106,49 @@
       document.getElementById('order-ref').textContent = 'See your email receipt for the order ID.';
     }
 
-    // Pinterest Tag — Purchase event (verified server-side via /api/get-session)
-    // Fetches the real order total and hashed customer email from Stripe so the event
-    // includes (a) accurate value for ROAS tracking, (b) enhanced match for higher attribution.
-    (async function firePurchase() {
+    function loadGoogleCustomerReviews(optIn) {
+      if (!optIn || window.__cartersGoogleReviewsLoaded) return;
+      window.__cartersGoogleReviewsLoaded = true;
+      window.renderOptIn = function () {
+        if (!window.gapi) return;
+        window.gapi.load('surveyoptin', function () {
+          window.gapi.surveyoptin.render({
+            merchant_id: optIn.merchant_id,
+            order_id: optIn.order_id,
+            email: optIn.email,
+            delivery_country: optIn.delivery_country,
+            estimated_delivery_date: optIn.estimated_delivery_date
+          });
+        });
+      };
+
+      const script = document.createElement('script');
+      script.src = 'https://apis.google.com/js/platform.js?onload=renderOptIn';
+      script.async = true;
+      script.defer = true;
+      script.referrerPolicy = 'origin';
+      document.head.appendChild(script);
+    }
+
+    // Fetch verified order details once. Google Customer Reviews uses them to
+    // display its voluntary survey opt-in; analytics use the verified total.
+    (async function hydrateConfirmedOrder() {
       if (!sid || !sid.startsWith('cs_')) return;
       const pinFiredKey = 'pintrk_purchase_' + sid;
       const ga4FiredKey = 'ga4_purchase_' + sid;
       const metaFiredKey = 'meta_purchase_' + sid;
-      if (
-        sessionStorage.getItem(pinFiredKey) &&
-        sessionStorage.getItem(ga4FiredKey) &&
-        sessionStorage.getItem(metaFiredKey)
-      ) return;
 
       try {
         const res = await fetch('/api/get-session?session_id=' + encodeURIComponent(sid));
         if (!res.ok) return;
         const data = await res.json();
-        if (!data || !data.ok || !data.amount_total) return;
+        if (!data || !data.ok) return;
+
+        if (data.customer_review_opt_in) {
+          loadGoogleCustomerReviews(data.customer_review_opt_in);
+        }
+
+        if (!data.amount_total) return;
 
         if (typeof pintrk === 'function' && !sessionStorage.getItem(pinFiredKey)) {
           // Re-attach enhanced match (hashed email) for this user.

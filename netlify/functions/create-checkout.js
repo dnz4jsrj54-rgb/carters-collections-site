@@ -164,6 +164,7 @@ exports.handler = async (event) => {
       metadata: {
         item_count: String(items.reduce((s, i) => s + (Number(i.qty) || 1), 0)),
         source: "carters-collection-web",
+        special_order: String(items.some((item) => item.specialOrder === true)),
       },
     });
 
