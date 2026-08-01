@@ -237,6 +237,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <div class="footer-col">
             <h4>Connect</h4>
             <div class="footer-socials">
+              <a href="https://www.facebook.com/profile.php?id=61592724502102" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.025 1.792-4.697 4.533-4.697 1.313 0 2.686.236 2.686.236v2.974h-1.513c-1.49 0-1.956.931-1.956 1.887v2.26h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073Z"/></svg></a>
               <a href="https://www.pinterest.com/1dhk4ykvcwtywxu6ix8q2z8myzpta0/" target="_blank" rel="noopener noreferrer" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M11 21c.7-2 .8-3 1-5l1-5"/><path d="M9 9c.5-2 2-3 4-3 2.5 0 4 1.6 4 4 0 3-2 5-4 5-1.6 0-2.5-1-2-2"/></svg></a>
               <a href="https://www.tiktok.com/@cart3rscoll3ctions" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M15 3v10.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M15 3c.5 2.5 2.5 4.5 5 5"/></svg></a>
             </div>
