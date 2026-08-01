@@ -186,7 +186,7 @@ ${products.map(card).join('\n')}
   </main>
 
   <div id="footer-slot"></div>
-  <script src="../assets/js/layout.js?v=202607261745"></script>
+  <script src="../assets/js/layout.js?v=202607311842"></script>
   <script src="../assets/js/app.js?v=202607262230"></script>
   <script>
     bindAddButtons();
