@@ -12,6 +12,7 @@ const PINTEREST_FEED_PATH = path.join(ROOT, 'pinterest-catalog.xml');
 // Product attributes Google Ads flagged in the Performance Max diagnostics.
 // These values come from the product copy and primary product images.
 const PRODUCT_ATTRIBUTE_OVERRIDES = Object.freeze({
+  b2: { gender: 'female', ageGroup: 'adult', color: 'Black' },
   b6: { gender: 'female', ageGroup: 'adult', color: 'Green' },
   b8: { gender: 'male', ageGroup: 'adult', color: 'Black' },
   b11: { gender: 'unisex', ageGroup: 'adult', color: 'Cognac' },
