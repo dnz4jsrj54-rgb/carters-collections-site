@@ -7,6 +7,7 @@ const ORIGIN = 'https://carterscollections.com';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CATALOG_PATH = path.join(ROOT, 'assets/js/app.js');
 const FEED_PATH = path.join(ROOT, 'google-merchant-feed.xml');
+const PINTEREST_FEED_PATH = path.join(ROOT, 'pinterest-catalog.xml');
 
 function xmlEscape(value) {
   return String(value)
@@ -231,16 +232,42 @@ export function renderMerchantFeed(items) {
   ].join('');
 }
 
+export function renderPinterestFeed(items) {
+  const pinterestItems = items.map((item) => ({
+    ...item,
+    id: `p-${item.id}`
+  }));
+
+  return renderMerchantFeed(pinterestItems)
+    .replace(
+      "<title>Carter&apos;s Collections Product Feed</title>",
+      "<title>Carter&apos;s Collections Pinterest Product Feed</title>"
+    )
+    .replace(
+      'Current public catalog for Google Merchant Center free listings.',
+      'Current public catalog for Pinterest Shopping.'
+    );
+}
+
 export function generateMerchantFeed() {
   const items = buildMerchantItems();
   const xml = renderMerchantFeed(items);
+  const pinterestXml = renderPinterestFeed(items);
   fs.writeFileSync(FEED_PATH, xml, 'utf8');
-  return { items, xml, outputPath: FEED_PATH };
+  fs.writeFileSync(PINTEREST_FEED_PATH, pinterestXml, 'utf8');
+  return {
+    items,
+    xml,
+    outputPath: FEED_PATH,
+    pinterestXml,
+    pinterestOutputPath: PINTEREST_FEED_PATH
+  };
 }
 
 if (path.resolve(process.argv[1] || '') === fileURLToPath(import.meta.url)) {
-  const { items, outputPath } = generateMerchantFeed();
+  const { items, outputPath, pinterestOutputPath } = generateMerchantFeed();
   const inStock = items.filter((item) => item.availability === 'in_stock').length;
   const outOfStock = items.length - inStock;
   console.log(`Generated ${path.relative(ROOT, outputPath)} with ${items.length} products (${inStock} in stock, ${outOfStock} out of stock).`);
+  console.log(`Generated ${path.relative(ROOT, pinterestOutputPath)} with ${items.length} Pinterest products using migration-safe IDs.`);
 }
