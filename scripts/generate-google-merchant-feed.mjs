@@ -9,6 +9,26 @@ const CATALOG_PATH = path.join(ROOT, 'assets/js/app.js');
 const FEED_PATH = path.join(ROOT, 'google-merchant-feed.xml');
 const PINTEREST_FEED_PATH = path.join(ROOT, 'pinterest-catalog.xml');
 
+// Product attributes Google Ads flagged in the Performance Max diagnostics.
+// These values come from the product copy and primary product images.
+const PRODUCT_ATTRIBUTE_OVERRIDES = Object.freeze({
+  b6: { gender: 'female', ageGroup: 'adult', color: 'Green' },
+  b8: { gender: 'male', ageGroup: 'adult', color: 'Black' },
+  b11: { gender: 'unisex', ageGroup: 'adult', color: 'Cognac' },
+  b14: { gender: 'female', ageGroup: 'adult', color: 'Orange' },
+  b18: { gender: 'female', ageGroup: 'adult', color: 'Beige' },
+  b19: { gender: 'female', ageGroup: 'adult', color: 'Black' },
+  b22: { gender: 'female', ageGroup: 'adult', color: 'Beige' },
+  b30: { gender: 'unisex', ageGroup: 'adult', color: 'Black' },
+  g2: { color: 'Grey' },
+  g5: { color: 'Smoke' },
+  g7: { color: 'Grey' },
+  g13: { color: 'Grey' },
+  g19: { color: 'Grey' },
+  g22: { color: 'Green' },
+  g23: { color: 'Grey' }
+});
+
 function xmlEscape(value) {
   return String(value)
     .replaceAll('&', '&amp;')
@@ -177,6 +197,8 @@ function itemFromCatalog(id, catalogProduct) {
     if (section.includes('men')) item.gender = 'male';
     item.ageGroup = 'adult';
   }
+
+  Object.assign(item, PRODUCT_ATTRIBUTE_OVERRIDES[id] || {});
 
   return item;
 }
