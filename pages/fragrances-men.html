@@ -4,9 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Men's Fragrance — Carter's Collections</title>
-  <meta name="description" content="Curated men's fragrance — designer icons, niche picks, and viral bottles. Twenty-five quietly extraordinary scents." />
+  <meta name="description" content="Curated men's fragrance — designer icons, niche picks, and viral bottles. Twenty-seven quietly extraordinary scents." />
   <meta property="og:title" content="Men's Fragrance — Carter's Collections" />
-  <meta property="og:description" content="Twenty-five quietly extraordinary scents — designer icons, niche picks, viral hits." />
+  <meta property="og:description" content="Twenty-seven quietly extraordinary scents — designer icons, niche picks, viral hits." />
   <meta property="og:image" content="https://carterscollections.com/assets/images/collection-men.jpg" />
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -59,7 +59,7 @@
       <div class="container reveal">
         <span class="eyebrow">No. 01 — Men's</span>
         <h1>Fragrance for him.</h1>
-        <p class="lede">Twenty-five quietly extraordinary scents — designer icons, niche Middle-Eastern picks, and the cult bottles you've seen all over your feed. Authentic, factory-sealed, shipped from Austin.</p>
+        <p class="lede">Twenty-seven quietly extraordinary scents — designer icons, niche Middle-Eastern picks, and the cult bottles you've seen all over your feed. Authentic, factory-sealed, shipped from Austin.</p>
         <p style="margin-top:24px"><a class="eyebrow" href="fragrances-under-100.html">Explore fragrances under $100 →</a></p>
       </div>
     </section>
@@ -75,6 +75,42 @@
           <button class="filter-chip">Oud</button>
         </div>
         <div class="product-grid" id="grid">
+          <article class="product-card" data-product="m26" itemscope itemtype="https://schema.org/Product">
+            <a href="product-bella-vita-luxury-ceo-man.html" class="product-card-media is-contain" itemprop="url">
+              <img src="../assets/real-products/m26_1.jpg" alt="CEO Man — Lemon · Sugar · Lavender · Vetiver" loading="lazy" itemprop="image" />
+            </a>
+            <div class="product-card-body">
+              <a href="product-bella-vita-luxury-ceo-man.html" class="product-card-name" itemprop="url"><span itemprop="name">CEO Man</span><span class="product-card-sub">by Bella Vita Luxury</span></a>
+              <meta itemprop="brand" content="Bella Vita Luxury" />
+              <div class="product-card-notes">Lemon · Sugar · Lavender · Vetiver</div>
+              <div class="product-card-foot">
+                <span class="product-card-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                  <span class="now" itemprop="price" content="23.99">$23.99</span>
+                  <meta itemprop="priceCurrency" content="USD" />
+                  <link itemprop="availability" href="https://schema.org/InStock" />
+                </span>
+                <button class="add-to-cart-btn" data-add="m26">Add</button>
+              </div>
+            </div>
+          </article>
+          <article class="product-card" data-product="m27" itemscope itemtype="https://schema.org/Product">
+            <a href="product-bella-vita-luxury-goat-man.html" class="product-card-media is-contain" itemprop="url">
+              <img src="../assets/real-products/m27_1.jpg" alt="G.O.A.T. Man — Bergamot · Lavender · Pepper · Vetiver" loading="lazy" itemprop="image" />
+            </a>
+            <div class="product-card-body">
+              <a href="product-bella-vita-luxury-goat-man.html" class="product-card-name" itemprop="url"><span itemprop="name">G.O.A.T. Man</span><span class="product-card-sub">by Bella Vita Luxury</span></a>
+              <meta itemprop="brand" content="Bella Vita Luxury" />
+              <div class="product-card-notes">Bergamot · Lavender · Pepper · Vetiver</div>
+              <div class="product-card-foot">
+                <span class="product-card-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                  <span class="now" itemprop="price" content="23.99">$23.99</span>
+                  <meta itemprop="priceCurrency" content="USD" />
+                  <link itemprop="availability" href="https://schema.org/InStock" />
+                </span>
+                <button class="add-to-cart-btn" data-add="m27">Add</button>
+              </div>
+            </div>
+          </article>
           <article class="product-card" data-product="m23" itemscope itemtype="https://schema.org/Product">
             <a href="product-montblanc-explorer-platinum.html" class="product-card-media is-contain" itemprop="url">
               <img src="../assets/real-products/m23_1.jpg" alt="Explorer Platinum — Violet Leaf · Clary Sage · Cedarwood" loading="lazy" itemprop="image" />
@@ -549,7 +585,7 @@
   <script src="../assets/js/layout.js?v=202607311842"></script>
   <script src="../assets/js/app.js?v=202607262230"></script>
   <script>
-    const ids = ['m23','m24','m25','m1','m2','m3','m4','m5','m6','m7','m8','m9','m10','m11','m12','m13','m14','m15','m16','m17','m18','m19','m20','m21','m22'];
+    const ids = ['m26','m27','m23','m24','m25','m1','m2','m3','m4','m5','m6','m7','m8','m9','m10','m11','m12','m13','m14','m15','m16','m17','m18','m19','m20','m21','m22'];
     const grid = document.getElementById('grid');
     if (!grid.children.length) grid.innerHTML = ids.map(id => productCardHTML(CARTER_CATALOG[id])).join('');
     bindAddButtons();
