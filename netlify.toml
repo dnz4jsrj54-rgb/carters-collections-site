@@ -2,7 +2,7 @@
 # Static site + serverless functions for Stripe Checkout
 
 [build]
-  command = "node scripts/generate-google-merchant-feed.mjs"
+  command = "node scripts/generate-body-care-pages.mjs && node scripts/generate-google-merchant-feed.mjs"
   publish = "."
   functions = "netlify/functions"
 
@@ -61,6 +61,18 @@
 [[redirects]]
   from = "/pages/bags/"
   to = "/pages/bags.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/body-care"
+  to = "/pages/body-care.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/body-care/"
+  to = "/pages/body-care.html"
   status = 301
   force = true
 

@@ -16,6 +16,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://carterscollections.com/pages/body-care.html</loc>
+    <lastmod>2026-08-17</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://carterscollections.com/pages/clothing.html</loc>
     <lastmod>2026-06-10</lastmod>
     <priority>0.6</priority>
@@ -794,6 +799,26 @@
     <loc>https://carterscollections.com/pages/return-policy.html</loc>
     <lastmod>2026-07-31</lastmod>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://carterscollections.com/pages/product-native-deodorant.html</loc>
+    <lastmod>2026-08-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carterscollections.com/pages/product-native-discovery-set.html</loc>
+    <lastmod>2026-08-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carterscollections.com/pages/product-dr-squatch-coconut-castaway.html</loc>
+    <lastmod>2026-08-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carterscollections.com/pages/product-dr-squatch-natural-deodorant.html</loc>
+    <lastmod>2026-08-17</lastmod>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://carterscollections.com/pages/sale.html</loc>

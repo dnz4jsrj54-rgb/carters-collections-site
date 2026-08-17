@@ -542,6 +542,7 @@ body.search-open { overflow: hidden; }
   gap: clamp(16px, 2vw, 28px);
 }
 .collections-grid-5 { grid-template-columns: repeat(5, 1fr); }
+.collections-grid-6 { grid-template-columns: repeat(3, 1fr); }
 .collection-card {
   position: relative;
   aspect-ratio: 3 / 4;
@@ -1247,6 +1248,7 @@ body.search-open { overflow: hidden; }
   .hamburger { display: inline-flex; }
   .collections-grid { grid-template-columns: 1fr; }
   .collections-grid-5 { grid-template-columns: repeat(2, 1fr); }
+  .collections-grid-6 { grid-template-columns: repeat(2, 1fr); }
   .product-grid { grid-template-columns: repeat(2, 1fr); }
   .product-grid-4 { grid-template-columns: repeat(2, 1fr); }
   .product-grid-3 { grid-template-columns: repeat(3, 1fr); }
