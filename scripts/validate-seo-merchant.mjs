@@ -58,6 +58,21 @@ function invariantSnapshot(product) {
   };
 }
 
+function baselineProduct(relative) {
+  try {
+    const html = execFileSync('git', ['show', `origin/main:${relative}`], {
+      cwd: root,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    return productFromHtml(html, `origin/main:${relative}`);
+  } catch (error) {
+    const stderr = String(error?.stderr || '');
+    if (stderr.includes("exists on disk, but not in 'origin/main'")) return null;
+    throw error;
+  }
+}
+
 function metaContent(html, selector) {
   const escaped = selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   return html.match(new RegExp(`<meta\\s+${escaped}\\s+content="([^"]*)"`, 'i'))?.[1];
@@ -124,9 +139,8 @@ for (const file of files) {
     }
   }
 
-  const beforeHtml = execFileSync('git', ['show', `origin/main:${relative}`], { cwd: root, encoding: 'utf8' });
-  const beforeProduct = productFromHtml(beforeHtml, `origin/main:${relative}`);
-  if (JSON.stringify(invariantSnapshot(beforeProduct)) !== JSON.stringify(invariantSnapshot(product))) {
+  const beforeProduct = baselineProduct(relative);
+  if (beforeProduct && JSON.stringify(invariantSnapshot(beforeProduct)) !== JSON.stringify(invariantSnapshot(product))) {
     fail(`${relative}: price, availability, currency, condition, product ID, or canonical offer URL changed`);
   }
 }
