@@ -37,13 +37,13 @@ exports.handler = async (event) => {
 
   // Pick a Stripe Tax code per item.
   // Reference: https://docs.stripe.com/tax/tax-codes
-  //   txcd_32050025 — Cosmetics / Beautifying (covers Cologne, Perfume)
+  //   txcd_32050025 — Cosmetics / Beautifying (covers fragrance and deodorant)
   //   txcd_99999999 — General (Tangible Goods) fallback
   function pickTaxCode(it) {
     const id = String(it.id || "").toLowerCase();
     const cat = String(it.cat || it.category || "").toLowerCase();
     // Fragrance SKUs are m1-m8 (men) and w1-w8 (women)
-    if (cat === "fragrance" || /^[mw]\d/.test(id)) return "txcd_32050025";
+    if (cat === "fragrance" || cat === "body-care" || /^[mw]\d/.test(id)) return "txcd_32050025";
     // Everything else (clothing, accessories) → general tangible goods
     return "txcd_99999999";
   }
