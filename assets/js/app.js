@@ -158,6 +158,10 @@ window.CARTER_CATALOG = {
   s022: { id: 's022', name: 'Le Sel d\'Issey EDT 3.4 oz', subtitle: 'by Issey Miyake', cat: 'fragrance', section: '', notes: 'Men\'s · Woody · Spicy', price: 83.99, oldPrice: 135.00, image: '../assets/real-products/s022_1.jpg', imageFit: 'contain', badge: 'On Sale', detail: 'product-issey-miyake-le-sel-dissey.html', real: true, onSale: true, saleAddedAt: '2026-06-01' },
   s023: { id: 's023', name: 'Jean Lowe Immortel EDP 3.4 oz', subtitle: 'by Maison Alhambra', cat: 'fragrance', section: '', notes: 'Men\'s · Spicy · Woody', price: 41.99, oldPrice: 60.00, image: '../assets/real-products/s023_1.jpg', imageFit: 'contain', badge: 'On Sale', detail: 'product-maison-alhambra-jean-lowe-immortel.html', real: true, onSale: true, saleAddedAt: '2026-06-01' },
   s024: { id: 's024', name: 'Replica Beach Walk EDT 3.4 oz', subtitle: 'by Maison Margiela', cat: 'fragrance', section: '', notes: 'Women\'s · Floral · Musky', price: 118.99, oldPrice: 165.00, image: '../assets/real-products/s024_1.jpg', imageFit: 'contain', badge: 'On Sale', detail: 'product-maison-margiela-replica-beach-walk.html', real: true, onSale: true, saleAddedAt: '2026-06-01' },
+  bc1: { id: 'bc1', name: 'Aluminum-Free Deodorant Stick', subtitle: 'by Native', cat: 'body-care', section: 'Body Care', notes: '16 scents and sizes · Aluminum free', price: 10.99, image: 'assets/body-care/native/01-coconut-vanilla-whole-body.jpg', imageFit: 'contain', badge: '16 Options', detail: 'product-native-deodorant.html', real: true, hasVariants: true },
+  bc2: { id: 'bc2', name: 'Deodorant Discovery Set 4-Pack', subtitle: 'by Native', cat: 'body-care', section: 'Body Care', notes: 'Top Sellers or Vanilla · Four 2.65 oz sticks', price: 49.99, oldPrice: 56.00, image: 'assets/body-care/native-discovery/main.jpg', imageFit: 'contain', badge: '4-Pack', detail: 'product-native-discovery-set.html', real: true, hasVariants: true },
+  bc3: { id: 'bc3', name: 'Coconut Castaway Invisible Glide Deodorant', subtitle: 'by Dr. Squatch', cat: 'body-care', section: 'Body Care', notes: 'Coconut Castaway · 2.65 oz', price: 10.99, image: 'assets/body-care/dr-squatch/coconut-castaway-invisible-glide.jpg', imageFit: 'contain', badge: 'Invisible Glide', detail: 'product-dr-squatch-coconut-castaway.html', real: true },
+  bc4: { id: 'bc4', name: 'Natural Men\'s Deodorant', subtitle: 'by Dr. Squatch', cat: 'body-care', section: 'Body Care', notes: 'Six scents · Aluminum free · 72-hour odor protection', price: 9.99, oldPrice: 13.00, image: 'assets/body-care/dr-squatch/six-scents-main.jpg', imageFit: 'contain', badge: 'Bestseller', detail: 'product-dr-squatch-natural-deodorant.html', real: true, hasVariants: true },
 };
 
 // ============================================================
@@ -525,7 +529,9 @@ function productCardHTML(p, opts) {
           ${priceBlock}
           ${p.soldOut
             ? `<button class="add-to-cart-btn" disabled aria-disabled="true">Sold Out</button>`
-            : `<button class="add-to-cart-btn" data-add="${p.id}">Add</button>`}
+            : p.hasVariants
+              ? `<a class="add-to-cart-btn" href="${link}" aria-label="Choose options for ${p.name}">Options</a>`
+              : `<button class="add-to-cart-btn" data-add="${p.id}">Add</button>`}
         </div>
       </div>
     </article>

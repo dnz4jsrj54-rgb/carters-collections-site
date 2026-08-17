@@ -104,6 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <nav class="nav-primary" aria-label="Primary">
           <a href="${P('fragrances-men.html')}">Men's Fragrance</a>
           <a href="${P('fragrances-women.html')}">Women's Fragrance</a>
+          <a href="${P('body-care.html')}">Body Care</a>
           <a href="${P('clothing.html')}">Clothing</a>
           <a href="${P('bags.html')}">Bags</a>
           <a href="${P('sunglasses.html')}">Sunglasses</a>
@@ -157,6 +158,7 @@ document.addEventListener('DOMContentLoaded', function () {
       <ul>
         <li><a href="${P('fragrances-men.html')}" data-close>Men's Fragrance</a></li>
         <li><a href="${P('fragrances-women.html')}" data-close>Women's Fragrance</a></li>
+        <li><a href="${P('body-care.html')}" data-close>Body Care</a></li>
         <li><a href="${P('clothing.html')}" data-close>Clothing</a></li>
         <li><a href="${P('bags.html')}" data-close>Bags</a></li>
         <li><a href="${P('sunglasses.html')}" data-close>Sunglasses</a></li>
@@ -202,13 +204,14 @@ document.addEventListener('DOMContentLoaded', function () {
             <a href="${P('index.html')}" class="logo logo--wordmark logo--full">
               ${logoFull}
             </a>
-            <p>Curated fragrance and considered womenswear, made for those who care for the quiet details.</p>
+            <p>Curated fragrance, body care, and considered womenswear, made for those who care for the quiet details.</p>
           </div>
           <div class="footer-col">
             <h4>Shop</h4>
             <ul>
               <li><a href="${P('fragrances-men.html')}">Men's Fragrance</a></li>
               <li><a href="${P('fragrances-women.html')}">Women's Fragrance</a></li>
+              <li><a href="${P('body-care.html')}">Body Care</a></li>
               <li><a href="${P('clothing.html')}">Clothing</a></li>
               <li><a href="${P('bags.html')}">Bags</a></li>
               <li><a href="${P('sunglasses.html')}">Sunglasses</a></li>
