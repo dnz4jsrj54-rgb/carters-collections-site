@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "description": "Carter's Collection — curated fragrance, Austin TX",
+  "scripts": {
+    "generate:body-care": "node scripts/generate-body-care-pages.mjs",
+    "generate:feeds": "node scripts/generate-google-merchant-feed.mjs"
+  },
   "dependencies": {
     "stripe": "^17.0.0"
   }
