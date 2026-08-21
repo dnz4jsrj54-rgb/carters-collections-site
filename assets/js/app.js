@@ -586,7 +586,7 @@ function initReveal() {
 }
 
 // ============================================================
-// Newsletter (Netlify Forms)
+// Newsletter (Cloudflare Worker)
 // ============================================================
 function bindNewsletter() {
   document.querySelectorAll('.newsletter-form').forEach(form => {
@@ -595,21 +595,20 @@ function bindNewsletter() {
       const emailInput = form.querySelector('input[type="email"]');
       if (!emailInput || !emailInput.value) return;
 
-      // Build URL-encoded payload from all named fields so Netlify records the submission.
+      // Build a URL-encoded payload for the same-origin newsletter endpoint.
       const data = new FormData(form);
       const body = new URLSearchParams(data).toString();
 
-      fetch('/', {
+      fetch('/api/newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body
-      }).then(() => {
+      }).then((response) => {
+        if (!response.ok) throw new Error('Newsletter signup failed');
         showToast('Welcome to Carter\u2019s Collections');
         form.reset();
       }).catch(() => {
-        // Even if the network hiccups, give the visitor positive feedback.
-        showToast('Welcome to Carter\u2019s Collections');
-        form.reset();
+        showToast('Please try subscribing again');
       });
     });
   });

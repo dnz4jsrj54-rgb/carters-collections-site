@@ -4,10 +4,15 @@
   "private": true,
   "description": "Carter's Collection — curated fragrance, Austin TX",
   "scripts": {
+    "build:cloudflare": "node scripts/generate-body-care-pages.mjs && node scripts/generate-google-merchant-feed.mjs && node scripts/build-cloudflare.mjs",
     "generate:body-care": "node scripts/generate-body-care-pages.mjs",
-    "generate:feeds": "node scripts/generate-google-merchant-feed.mjs"
+    "generate:feeds": "node scripts/generate-google-merchant-feed.mjs",
+    "test:cloudflare": "node --test tests/cloudflare-worker.test.mjs"
   },
   "dependencies": {
     "stripe": "^17.0.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
   }
 }

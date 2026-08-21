@@ -79,7 +79,7 @@
         '</div>' +
 
         // Email gate
-        '<form id="cc-spin-form" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="display:flex;flex-direction:column;gap:10px;">' +
+        '<form id="cc-spin-form" name="newsletter" method="POST" style="display:flex;flex-direction:column;gap:10px;">' +
           '<input type="hidden" name="form-name" value="newsletter" />' +
           '<input type="hidden" name="source" value="spin-wheel" />' +
           '<p style="display:none;"><label>Don\u2019t fill this out: <input name="bot-field" /></label></p>' +
@@ -174,10 +174,10 @@
         btn.disabled = true;
         btn.textContent = "Spinning\u2026";
 
-        // Capture the email into the Netlify newsletter list (fire-and-forget).
+        // Capture the email into the Cloudflare newsletter list (fire-and-forget).
         try {
           var data = new URLSearchParams(new FormData(form)).toString();
-          fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: data }).catch(function () {});
+          fetch("/api/newsletter", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: data }).catch(function () {});
         } catch (e2) {}
 
         var winIdx = pickIndex();

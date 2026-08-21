@@ -19,6 +19,7 @@ function fail(message) {
 
 function htmlFiles(directory) {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    if (entry.isDirectory() && ['dist', 'node_modules'].includes(entry.name)) return [];
     const absolute = path.join(directory, entry.name);
     if (entry.isDirectory()) return htmlFiles(absolute);
     return entry.name.endsWith('.html') ? [absolute] : [];
@@ -59,6 +60,15 @@ function invariantSnapshot(product) {
 }
 
 function baselineProduct(relative) {
+  const baselineRoot = process.env.BASELINE_ROOT;
+  if (baselineRoot) {
+    const baselineFile = path.join(baselineRoot, relative);
+    if (!fs.existsSync(baselineFile)) return null;
+    return productFromHtml(
+      fs.readFileSync(baselineFile, 'utf8'),
+      `baseline:${relative}`,
+    );
+  }
   try {
     const html = execFileSync('git', ['show', `origin/main:${relative}`], {
       cwd: root,
@@ -201,7 +211,6 @@ for (const directive of [
   'Disallow: /pages/cart.html',
   'Disallow: /pages/checkout-success.html',
   'Disallow: /api/',
-  'Disallow: /.netlify/functions/',
   'Sitemap: https://carterscollections.com/sitemap.xml',
 ]) {
   if (!robots.includes(directive)) fail(`robots.txt is missing: ${directive}`);

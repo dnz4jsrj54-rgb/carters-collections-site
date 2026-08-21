@@ -273,7 +273,7 @@ document.addEventListener('DOMContentLoaded', function () {
 /* ============================================================
    Exit-Intent Offer Popup — site-wide.
    Shows once per visitor (localStorage). Captures email into the
-   Netlify "newsletter" form (feeds welcome-email automation) and
+   newsletter endpoint (feeds welcome-email automation) and
    Desktop: mouse leaves top of viewport.
    Mobile: fast scroll-up after engagement.
    ============================================================ */
@@ -302,7 +302,7 @@ document.addEventListener('DOMContentLoaded', function () {
         +   '<div style="font-family:var(--font-display,Georgia,serif);font-style:italic;font-size:0.82rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold,#c49e58);margin-bottom:10px;">Before you go</div>'
         +   '<h2 style="font-family:var(--font-display,Georgia,serif);font-size:1.7rem;line-height:1.2;margin:0 0 10px;">Stay close to the collection</h2>'
         +   '<p style="font-size:0.92rem;line-height:1.6;color:var(--text-muted,#6a6a6a);margin:0 0 20px;">Join the list for new arrivals and seasonal edits.</p>'
-        +   '<form id="cc-exit-form" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="display:flex;flex-direction:column;gap:10px;">'
+        +   '<form id="cc-exit-form" name="newsletter" method="POST" style="display:flex;flex-direction:column;gap:10px;">'
         +     '<input type="hidden" name="form-name" value="newsletter" />'
         +     '<p style="display:none;"><label>Don\u2019t fill this out: <input name="bot-field" /></label></p>'
         +     '<input type="email" name="email" required placeholder="you@email.com" style="padding:13px 14px;border:1px solid var(--border,#d8d2c4);border-radius:8px;font-size:0.95rem;font-family:inherit;background:var(--bg,#fff);color:var(--text,#1a1a1a);" />'
@@ -341,7 +341,7 @@ document.addEventListener('DOMContentLoaded', function () {
       form.addEventListener('submit', function(e){
         e.preventDefault();
         var data = new URLSearchParams(new FormData(form)).toString();
-        fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: data })
+        fetch('/api/newsletter', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: data })
           .catch(function(){ /* still reveal code even if submit hiccups */ })
           .finally(function(){
             localStorage.setItem(SEEN_KEY, '1');

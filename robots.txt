@@ -5,6 +5,5 @@ Allow: /
 Disallow: /pages/cart.html
 Disallow: /pages/checkout-success.html
 Disallow: /api/
-Disallow: /.netlify/functions/
 
 Sitemap: https://carterscollections.com/sitemap.xml
