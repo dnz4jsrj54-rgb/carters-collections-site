@@ -13,6 +13,12 @@
   "vars": {
     "SITE_ORIGIN": "https://carterscollections.com"
   },
+  "kv_namespaces": [
+    {
+      "binding": "NEWSLETTER_SIGNUPS",
+      "id": "0fbbf4755b474dcaa8eaa358f6020af2"
+    }
+  ],
   "observability": {
     "enabled": true
   }
